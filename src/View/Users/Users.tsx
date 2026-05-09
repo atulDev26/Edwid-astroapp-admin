@@ -12,10 +12,18 @@ import {
     IconFilter 
 } from '@tabler/icons-react';
 import { cn } from '../../Utils/cn';
+import FilterPill from '../../Components/Common/FilterPill';
+import DateRangeFilter from '../../Components/Common/DateRangeFilter';
+import MultiSelectFilter from '../../Components/Common/MultiSelectFilter';
 
 const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([null, null]);
+    const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+    const [startDate, endDate] = dateRange;
     const rowsPerPage = 10;
+
+    const statusOptions = ['Active', 'Inactive', 'Blocked'];
 
     const data = [
         {
@@ -185,24 +193,35 @@ const Users = () => {
 
             {/* Filters Section */}
             <div className="flex flex-wrap items-center gap-3">
-                <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-outline-variant bg-white text-sm font-medium cursor-pointer hover:border-primary transition-all">
-                    <span>Status: All</span>
-                    <IconChevronDown size={16} className="text-on-surface-variant" />
-                </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-outline-variant bg-white text-sm font-medium cursor-pointer hover:border-primary transition-all">
-                    <IconCalendar size={16} className="text-on-surface-variant" />
-                    <span>Date Range</span>
-                    <IconChevronDown size={16} className="text-on-surface-variant" />
-                </div>
-                <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-outline-variant bg-white text-sm font-medium cursor-pointer hover:border-primary transition-all">
-                    <IconWallet size={16} className="text-on-surface-variant" />
-                    <span>Balance: Any</span>
-                    <IconChevronDown size={16} className="text-on-surface-variant" />
-                </div>
-                <div className="flex items-center gap-2 text-primary font-bold text-sm cursor-pointer hover:opacity-80 transition-all ml-2">
-                    <IconFilter size={18} />
-                    <span>More Filters</span>
-                </div>
+                <MultiSelectFilter 
+                    label="Status" 
+                    options={statusOptions}
+                    selectedValues={selectedStatuses}
+                    onChange={setSelectedStatuses}
+                />
+                <DateRangeFilter 
+                    startDate={startDate} 
+                    endDate={endDate} 
+                    onChange={(update) => setDateRange(update)} 
+                />
+                <FilterPill 
+                    label="Balance" 
+                    value="Any" 
+                    icon={IconWallet} 
+                    onClick={() => {}} 
+                />
+                {(selectedStatuses.length > 0 || startDate) && (
+                    <div 
+                        onClick={() => {
+                            setSelectedStatuses([]);
+                            setDateRange([null, null]);
+                        }}
+                        className="flex items-center gap-2 text-error font-bold text-sm cursor-pointer hover:opacity-80 transition-all ml-2"
+                    >
+                        <IconFilter size={18} />
+                        <span>Clear Filters</span>
+                    </div>
+                )}
             </div>
 
             {/* Table Section */}
