@@ -90,17 +90,19 @@ const Users = () => {
                 </div>
             ),
             grow: 2,
+            minWidth: '200px',
         },
         {
             name: 'Contact',
             selector: (row: any) => row.phone,
             cell: (row: any) => (
-                <div className="flex flex-col">
+                <div className="flex flex-col min-w-[180px]">
                     <span className="font-semibold text-on-surface text-sm">{row.phone}</span>
                     <span className="text-xs text-on-surface-variant font-medium">{row.email}</span>
                 </div>
             ),
             grow: 2,
+            minWidth: '200px',
         },
         {
             name: 'Registered',
@@ -111,17 +113,18 @@ const Users = () => {
             name: 'Wallet Balance',
             selector: (row: any) => row.walletBalance,
             cell: (row: any) => (
-                <span className="font-semibold text-on-surface text-sm">
+                <span className="font-semibold text-on-surface text-sm whitespace-nowrap">
                     ₹ {row.walletBalance.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </span>
             ),
             sortable: true,
+            minWidth: '140px',
         },
         {
             name: 'Total Spend',
             selector: (row: any) => row.totalSpend,
             cell: (row: any) => (
-                <div className="flex flex-col w-full">
+                <div className="flex flex-col w-full whitespace-nowrap">
                     <span className="text-xs text-on-surface-variant font-medium text-right pr-4">
                         ₹ {row.totalSpend.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                     </span>
@@ -129,22 +132,24 @@ const Users = () => {
             ),
             sortable: true,
             right: true,
+            minWidth: '120px',
         },
         {
             name: 'Status',
             selector: (row: any) => row.status,
             cell: (row: any) => (
                 <div className={cn(
-                    "px-3 py-1 rounded-full flex items-center gap-1.5",
+                    "px-3 py-1 rounded-full flex items-center gap-1.5 whitespace-nowrap",
                     row.status === 'Active' ? "bg-primary/5 text-primary" : "bg-error/5 text-error"
                 )}>
                     <div className={cn(
-                        "w-1.5 h-1.5 rounded-full",
+                        "w-1.5 h-1.5 rounded-full shrink-0",
                         row.status === 'Active' ? "bg-primary" : "bg-error"
                     )} />
                     <span className="text-xs font-bold">{row.status}</span>
                 </div>
             ),
+            minWidth: '110px',
         },
         {
             name: 'Last Active',

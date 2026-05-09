@@ -11,7 +11,7 @@ const TableWrapper = styled.div`
 
   .rdt_Table {
     background-color: transparent;
-    min-width: 900px; /* Slightly increased to ensure it triggers on more devices */
+    min-width: 1000px;
   }
   .rdt_TableHeadRow {
     background-color: #F8F9FC;
