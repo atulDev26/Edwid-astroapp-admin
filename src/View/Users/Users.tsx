@@ -1,4 +1,3 @@
-import React from 'react';
 
 const Users = () => {
     return (
@@ -9,15 +8,17 @@ const Users = () => {
                     Manage and monitor your application's user base.
                 </p>
             </div>
-            
+
             <div className="bg-white p-12 rounded-2xl border border-outline-variant shadow-sm flex flex-col items-center justify-center text-center space-y-4">
                 <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center text-primary">
                     <span className="text-2xl font-bold">U</span>
                 </div>
                 <h3 className="typography-h3">No Users Found</h3>
-                <p className="text-on-surface-variant typography-body-md max-w-md mx-auto">
-                    Start by adding new users or importing them from your database.
-                </p>
+                <div className="w-full">
+                    <p className="text-on-surface-variant typography-body-md text-center">
+                        Start by adding new users
+                    </p>
+                </div>
             </div>
         </div>
     );

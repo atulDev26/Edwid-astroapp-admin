@@ -147,7 +147,7 @@ apiClient.interceptors.request.use(
 
 
 apiClient.interceptors.response.use(
-    (response: AxiosResponse<ApiResult>): any => {
+    (response: AxiosResponse<ApiResult>): AxiosResponse<ApiResult> | Promise<AxiosResponse<ApiResult>> => {
         const { data, headers } = response;
 
         // Check headers first (standard)
@@ -171,7 +171,7 @@ apiClient.interceptors.response.use(
                 responseCode: 501,
                 message: "Session expired",
                 status: "failed",
-            });
+            }) as unknown as Promise<AxiosResponse<ApiResult>>;
         }
 
         let finalData = data;
@@ -179,13 +179,13 @@ apiClient.interceptors.response.use(
         if (data?.data && ENABLE_SECURITY) {
             finalData = {
                 ...data,
-                data: getDecryptData(data.data),
+                data: getDecryptData(data.data as string),
             };
         }
 
-        return finalData;
+        return finalData as unknown as AxiosResponse<ApiResult>;
     },
-    (error: AxiosError): any => {
+    (error: AxiosError): Promise<AxiosResponse<ApiResult>> => {
         if (error.response) {
             // Check if the response is HTML (often returned on server crashes)
             const isHtml = typeof error.response.data === 'string' &&
@@ -198,7 +198,7 @@ apiClient.interceptors.response.use(
                     responseCode: error.response.status,
                     message: "The server encountered an unexpected error. Please try again later.",
                     status: "failed",
-                });
+                }) as unknown as Promise<AxiosResponse<ApiResult>>;
             }
 
             if (error.response.status === 401) {
@@ -209,7 +209,7 @@ apiClient.interceptors.response.use(
                     responseCode: 401,
                     message: "Unauthorized - Please login again",
                     status: "failed",
-                });
+                }) as unknown as Promise<AxiosResponse<ApiResult>>;
             }
 
             return Promise.reject<ApiResult>(
@@ -219,7 +219,7 @@ apiClient.interceptors.response.use(
                     message: error.message,
                     status: "failed",
                 }
-            );
+            ) as unknown as Promise<AxiosResponse<ApiResult>>;
         }
 
         return Promise.reject<ApiResult>({
@@ -227,11 +227,11 @@ apiClient.interceptors.response.use(
             responseCode: 500,
             message: error.message,
             status: "failed",
-        });
+        }) as unknown as Promise<AxiosResponse<ApiResult>>;
     }
 );
 
-const formatError = <T>(error: any): ApiResult<T> => {
+const formatError = <T>(error: unknown): ApiResult<T> => {
     if (
         error &&
         typeof error === "object" &&
@@ -274,7 +274,7 @@ export const postApi = async <T = unknown>(
     data: RequestPayload
 ): Promise<ApiResult<T>> => {
     try {
-        return await apiClient.post<any, ApiResult<T>>(url, data);
+        return await apiClient.post<ApiResult<T>>(url, data) as unknown as ApiResult<T>;
     } catch (error) {
         return formatError<T>(error);
     }
@@ -285,7 +285,7 @@ export const imageUploadApi = async <T = unknown>(
     data: FormData
 ): Promise<ApiResult<T>> => {
     try {
-        return await apiClient.post<any, ApiResult<T>>(url, data);
+        return await apiClient.post<ApiResult<T>>(url, data) as unknown as ApiResult<T>;
     } catch (error) {
         return formatError<T>(error);
     }
@@ -293,10 +293,10 @@ export const imageUploadApi = async <T = unknown>(
 
 export const getApi = async <T = unknown>(
     url: string,
-    params?: any
+    params?: Record<string, unknown>
 ): Promise<ApiResult<T>> => {
     try {
-        return await apiClient.get<any, ApiResult<T>>(url, { params });
+        return await apiClient.get<ApiResult<T>>(url, { params }) as unknown as ApiResult<T>;
     } catch (error) {
         return formatError<T>(error);
     }
@@ -307,7 +307,7 @@ export const putApi = async <T = unknown>(
     data: RequestPayload
 ): Promise<ApiResult<T>> => {
     try {
-        return await apiClient.put<any, ApiResult<T>>(url, data);
+        return await apiClient.put<ApiResult<T>>(url, data) as unknown as ApiResult<T>;
     } catch (error) {
         return formatError<T>(error);
     }
@@ -318,7 +318,7 @@ export const patchApi = async <T = unknown>(
     data: RequestPayload
 ): Promise<ApiResult<T>> => {
     try {
-        return await apiClient.patch<any, ApiResult<T>>(url, data);
+        return await apiClient.patch<ApiResult<T>>(url, data) as unknown as ApiResult<T>;
     } catch (error) {
         return formatError<T>(error);
     }
@@ -328,7 +328,7 @@ export const deleteApi = async <T = unknown>(
     url: string
 ): Promise<ApiResult<T>> => {
     try {
-        return await apiClient.delete<any, ApiResult<T>>(url);
+        return await apiClient.delete<ApiResult<T>>(url) as unknown as ApiResult<T>;
     } catch (error) {
         return formatError<T>(error);
     }

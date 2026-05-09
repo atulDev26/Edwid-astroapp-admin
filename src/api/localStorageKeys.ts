@@ -21,7 +21,7 @@ const IS_PROD = import.meta.env.PROD;
 /**
  * Encrypts and saves any value to localStorage
  */
-export const setEncryptedItem = (key: string, value: any): void => {
+export const setEncryptedItem = (key: string, value: unknown): void => {
     if (value === null || value === undefined) return;
     const stringValue = typeof value === "object" ? JSON.stringify(value) : String(value);
 
@@ -77,8 +77,8 @@ export const setUserId = (userId: string): void => setEncryptedItem(STORAGE_KEYS
 export const getPassword = (): string | null => getDecryptedItem<string>(STORAGE_KEYS.PASSWORD);
 export const setPassword = (password: string): void => setEncryptedItem(STORAGE_KEYS.PASSWORD, password);
 
-export const getUserData = <T = any>(): T | null => getDecryptedItem<T>(STORAGE_KEYS.USER_DATA);
-export const setUserData = (data: any): void => setEncryptedItem(STORAGE_KEYS.USER_DATA, data);
+export const getUserData = <T = unknown>(): T | null => getDecryptedItem<T>(STORAGE_KEYS.USER_DATA);
+export const setUserData = (data: unknown): void => setEncryptedItem(STORAGE_KEYS.USER_DATA, data);
 
 
 /**

@@ -3,9 +3,9 @@ export interface EncryptedPayload {
     data: string;
 }
 
-export type RequestPayload = Record<string, any> | FormData;
+export type RequestPayload = Record<string, unknown> | FormData;
 
-export interface ApiResponse<T = any> {
+export interface ApiResponse<T = unknown> {
     data: T;
     responseCode: number;
     message: string;
@@ -21,4 +21,4 @@ export interface ApiErrorResponse {
     token?: string;
 }
 
-export type ApiResult<T = any> = ApiResponse<T> | ApiErrorResponse;
+export type ApiResult<T = unknown> = ApiResponse<T> | ApiErrorResponse;

@@ -1,15 +1,15 @@
 import CryptoJS from "crypto-js";
 
-export const getDecryptData = (encryptData: any) => {
+export const getDecryptData = (encryptData: string | null) => {
     if (encryptData == null) return null;
     const encryptionKey = import.meta.env.VITE_ENCRYPTION_KEY;
-    let decrypted = CryptoJS.AES.decrypt(encryptData, encryptionKey);
-    let data = decrypted.toString(CryptoJS.enc.Utf8);
+    const decrypted = CryptoJS.AES.decrypt(encryptData, encryptionKey);
+    const data = decrypted.toString(CryptoJS.enc.Utf8);
+    let result;
     try {
-        encryptData = JSON.parse(data);
-        // eslint-disable-next-line no-unused-vars
-    } catch (e) {
-        encryptData = data;
+        result = JSON.parse(data);
+    } catch {
+        result = data;
     }
-    return encryptData;
-}
+    return result;
+}
