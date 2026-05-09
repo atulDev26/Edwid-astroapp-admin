@@ -57,7 +57,7 @@ const TableWrapper = styled.div`
 `;
 
 interface CustomDataTableProps<T> extends TableProps<T> {
-  // Add any extra props if needed
+  // for any extra props
 }
 
 const CustomDataTable = <T,>(props: CustomDataTableProps<T>) => {
