@@ -1,10 +1,21 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Login from './View/Auth/Login';
 import Dashboard from './View/Dashboard/Dashboard';
+import Users from './View/Users/Users';
+import Astrologers from './View/Astrologers/Astrologers';
+import AiAstrologers from './View/AiAstrologers/AiAstrologers';
+import LiveMonitor from './View/LiveMonitor/LiveMonitor';
+import Wallets from './View/Wallets/Wallets';
+import Payouts from './View/Payouts/Payouts';
+import Reports from './View/Reports/Reports';
+import PujaBooking from './View/PujaBooking/PujaBooking';
+import Store from './View/Store/Store';
+import Content from './View/Content/Content';
+import Notifications from './View/Notifications/Notifications';
+import Settings from './View/Settings/Settings';
 import Layout from './Layout/Layout';
 
 const ProtectedRoute = () => {
-  // Add authentication logic here
   return (
     <Layout>
       <Outlet />
@@ -22,8 +33,18 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/users" element={<div className="typography-h1">Users Management (Coming Soon)</div>} />
-          <Route path="/settings" element={<div className="typography-h1">Settings (Coming Soon)</div>} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/astrologers" element={<Astrologers />} />
+          <Route path="/ai-astrologers" element={<AiAstrologers />} />
+          <Route path="/live-monitor" element={<LiveMonitor />} />
+          <Route path="/wallets" element={<Wallets />} />
+          <Route path="/payouts" element={<Payouts />} />
+          <Route path="/reports" element={<Reports />} />
+          <Route path="/puja-booking" element={<PujaBooking />} />
+          <Route path="/store" element={<Store />} />
+          <Route path="/content" element={<Content />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
 
         {/* Default Redirects */}
