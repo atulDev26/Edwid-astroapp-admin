@@ -54,11 +54,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                     <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                 ) : (
                     <>
-                        {Icon && iconPosition === 'left' && (
+                        {size !== 'icon' && Icon && iconPosition === 'left' && (
                             <Icon size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20} stroke={2} />
                         )}
                         {size !== 'icon' && children}
-                        {Icon && iconPosition === 'right' && (
+                        {size !== 'icon' && Icon && iconPosition === 'right' && (
                             <Icon size={size === 'sm' ? 16 : size === 'lg' ? 24 : 20} stroke={2} />
                         )}
                         {size === 'icon' && Icon && !children && (
