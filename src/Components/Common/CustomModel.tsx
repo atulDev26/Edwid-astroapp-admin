@@ -152,7 +152,7 @@ const CustomModel: React.FC<CustomModelProps> = ({
                           type="button"
                           variant="primary"
                           isLoading={isLoading}
-                          className="rounded-xl font-bold shadow-lg shadow-primary/20 min-w-[120px] px-8"
+                          className="rounded-xl font-bold shadow-lg shadow-primary-btn/20 min-w-[120px] px-8"
                           onClick={() => {
                             if (onPrimaryClick) onPrimaryClick();
                           }}

@@ -25,15 +25,27 @@
     --color-on-primary-container: #8486db;
     --color-inverse-primary: #c0c1ff;
     
+    /* Decoupled Button Primary */
+    --color-primary-btn: #040052;
+    --color-on-primary-btn: #ffffff;
+    
     --color-secondary: #835500;
     --color-on-secondary: #ffffff;
     --color-secondary-container: #feae2c;
     --color-on-secondary-container: #6b4500;
     
+    /* Decoupled Button Secondary */
+    --color-secondary-btn: #835500;
+    --color-on-secondary-btn: #ffffff;
+    
     --color-tertiary: #290700;
     --color-on-tertiary: #ffffff;
     --color-tertiary-container: #4c1400;
     --color-on-tertiary-container: #ce7758;
+    
+    /* Decoupled Button Tertiary */
+    --color-tertiary-btn: #290700;
+    --color-on-tertiary-btn: #ffffff;
     
     --color-error: #ba1a1a;
     --color-on-error: #ffffff;

@@ -14,9 +14,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant = 'primary', size = 'md', icon: Icon, iconPosition = 'left', isLoading, children, ...props }, ref) => {
 
         const variants = {
-            primary: 'bg-primary text-on-primary hover:opacity-90 shadow-sm',
-            secondary: 'bg-secondary text-on-secondary hover:opacity-90 shadow-sm',
-            tertiary: 'bg-tertiary text-on-tertiary hover:opacity-90 shadow-sm',
+            primary: 'bg-primary-btn text-on-primary-btn hover:opacity-90 shadow-sm',
+            secondary: 'bg-secondary-btn text-on-secondary-btn hover:opacity-90 shadow-sm',
+            tertiary: 'bg-tertiary-btn text-on-tertiary-btn hover:opacity-90 shadow-sm',
             neutral: 'bg-surface-container-highest text-on-surface hover:bg-surface-container-high',
             outlined: 'bg-transparent border border-outline text-on-surface hover:bg-surface-container-low',
             inverted: 'bg-inverse-surface text-inverse-on-surface hover:opacity-90 shadow-sm',
