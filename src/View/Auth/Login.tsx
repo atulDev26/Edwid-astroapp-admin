@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { IconArrowRight, IconMail, IconSparkles, IconArrowLeft } from '@tabler/icons-react';
 import Button from '../../Components/Common/Button';
 import Input from '../../Components/Common/Input';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => (
     <div className="flex flex-col items-center mb-8 text-center animate-in fade-in slide-in-from-top-4 duration-700">
@@ -14,6 +15,7 @@ const Header = () => (
 );
 
 const Login = () => {
+    const navigate = useNavigate();
     const [step, setStep] = useState<'email' | 'otp'>('email');
     const [email, setEmail] = useState('');
     const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -95,6 +97,8 @@ const Login = () => {
                         <form
                             onSubmit={(e) => {
                                 e.preventDefault();
+                                // navigate to dashboard
+                                navigate('/dashboard');
                                 console.log("Verifying OTP...");
                             }}
                             className="space-y-6"
