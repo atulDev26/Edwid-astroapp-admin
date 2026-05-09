@@ -1,9 +1,8 @@
-import React from 'react';
 import {
-    IconMenu2,
-    IconSearch,
-    IconBell
+    IconBell,
+    IconMenu2
 } from '@tabler/icons-react';
+import React from 'react';
 
 import Button from '../Components/Common/Button';
 import UserProfileDropdown from './UserProfileDropdown';
@@ -25,18 +24,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                         className="lg:hidden text-on-surface"
                     />
                     <h2 className="typography-h2 text-[#0A0E27] font-bold hidden md:block shrink-0">Astro Hora Admin</h2>
-
-                    {/* Search Bar */}
-                    <div className="hidden sm:flex items-center flex-1 max-w-md ml-4">
-                        <div className="relative w-full">
-                            <IconSearch size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-outline" />
-                            <input
-                                type="text"
-                                placeholder="Search..."
-                                className="w-full bg-[#F5F6FA] border-none rounded-full py-2.5 pl-11 pr-4 focus:ring-2 focus:ring-primary/20 text-sm transition-all"
-                            />
-                        </div>
-                    </div>
                 </div>
 
                 <div className="flex items-center gap-1 sm:gap-1">

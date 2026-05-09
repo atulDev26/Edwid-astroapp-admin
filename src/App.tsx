@@ -15,6 +15,8 @@ import Notifications from './View/Notifications/Notifications';
 import Settings from './View/Settings/Settings';
 import Layout from './Layout/Layout';
 
+import Profile from './View/Profile/Profile';
+
 const ProtectedRoute = () => {
   return (
     <Layout>
@@ -29,7 +31,7 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
-        
+
         {/* Protected Routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -45,6 +47,7 @@ function App() {
           <Route path="/content" element={<Content />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         {/* Default Redirects */}

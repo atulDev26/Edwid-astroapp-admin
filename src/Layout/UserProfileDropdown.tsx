@@ -40,34 +40,34 @@ const UserProfileDropdown: React.FC = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <MenuItems className="absolute right-0 mt-2 w-48 origin-top-right divide-y divide-outline-variant rounded-xl bg-white shadow-2xl ring-1 ring-black/5 focus:outline-none z-50 overflow-hidden border border-outline-variant">
-                        <div className="px-1 py-1">
+                    <MenuItems className="absolute right-0 mt-2 w-48 origin-top-right divide-y divide-outline-variant rounded-lg bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-50 overflow-hidden border border-outline-variant">
+                        <div className="py-1">
                             <MenuItem>
                                 {({ active }) => (
                                     <Link
                                         to="/profile"
                                         className={cn(
-                                            "group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-                                            active ? "bg-primary text-white" : "text-on-surface"
+                                            "group flex w-full items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors",
+                                            active ? "bg-surface-container-low text-primary" : "text-on-surface"
                                         )}
                                     >
-                                        <IconUser size={18} />
+                                        <IconUser size={18} stroke={1.5} className={cn("transition-colors", active ? "text-primary" : "text-on-surface-variant")} />
                                         My Profile
                                     </Link>
                                 )}
                             </MenuItem>
                         </div>
-                        <div className="px-1 py-1">
+                        <div className="py-1">
                             <MenuItem>
                                 {({ active }) => (
                                     <button
                                         onClick={() => setLogoutModalOpen(true)}
                                         className={cn(
-                                            "group flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
-                                            active ? "bg-error/10 text-error" : "text-error"
+                                            "group flex w-full items-center gap-3 px-4 py-2.5 text-sm font-medium transition-colors",
+                                            active ? "bg-error/5 text-error" : "text-error"
                                         )}
                                     >
-                                        <IconLogout size={18} />
+                                        <IconLogout size={18} stroke={1.5} />
                                         Logout
                                     </button>
                                 )}
