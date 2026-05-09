@@ -51,7 +51,7 @@ const Login = () => {
 
 
     return (
-        <div className="min-h-screen bg-primary flex flex-col items-center justify-center p-4">
+        <div className="h-dvh w-screen bg-primary flex flex-col items-center justify-center p-4 overflow-hidden fixed inset-0">
             <Header />
 
             <div className="bg-white rounded-2xl p-6 sm:p-8 w-full max-w-[440px] shadow-[0_20px_50px_rgba(0,0,0,0.3)] animate-in fade-in zoom-in-95 duration-500">
