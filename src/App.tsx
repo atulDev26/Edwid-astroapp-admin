@@ -16,6 +16,7 @@ import Settings from './View/Settings/Settings';
 import Layout from './Layout/Layout';
 
 import Profile from './View/Profile/Profile';
+import UserDetails from './View/Users/UserDetails';
 
 const ProtectedRoute = () => {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/astrologers" element={<Astrologers />} />
           <Route path="/ai-astrologers" element={<AiAstrologers />} />
           <Route path="/live-monitor" element={<LiveMonitor />} />

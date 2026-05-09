@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import CustomDataTable from '../../Components/Common/DataTable';
-import Pagination from '../../Components/Common/Pagination';
-import Button from '../../Components/Common/Button';
-import { 
-    IconDownload, 
-    IconBan, 
-    IconPlus, 
-    IconChevronDown, 
-    IconCalendar, 
-    IconWallet, 
-    IconFilter 
+import {
+    IconBan,
+    IconDownload,
+    IconFilter,
+    IconPlus,
+    IconWallet
 } from '@tabler/icons-react';
-import { cn } from '../../Utils/cn';
-import FilterPill from '../../Components/Common/FilterPill';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../Components/Common/Button';
+import CustomDataTable from '../../Components/Common/DataTable';
 import DateRangeFilter from '../../Components/Common/DateRangeFilter';
+import FilterPill from '../../Components/Common/FilterPill';
 import MultiSelectFilter from '../../Components/Common/MultiSelectFilter';
+import Pagination from '../../Components/Common/Pagination';
+import { cn } from '../../Utils/cn';
 
 const Users = () => {
+    const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([null, null]);
     const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
@@ -115,7 +115,6 @@ const Users = () => {
         {
             name: 'Registered',
             selector: (row: any) => row.registered,
-            sortable: true,
         },
         {
             name: 'Wallet Balance',
@@ -125,7 +124,6 @@ const Users = () => {
                     ₹ {row.walletBalance.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
                 </span>
             ),
-            sortable: true,
             minWidth: '140px',
         },
         {
@@ -138,7 +136,6 @@ const Users = () => {
                     </span>
                 </div>
             ),
-            sortable: true,
             right: true,
             minWidth: '120px',
         },
@@ -193,25 +190,25 @@ const Users = () => {
 
             {/* Filters Section */}
             <div className="flex flex-wrap items-center gap-3">
-                <MultiSelectFilter 
-                    label="Status" 
+                <MultiSelectFilter
+                    label="Status"
                     options={statusOptions}
                     selectedValues={selectedStatuses}
                     onChange={setSelectedStatuses}
                 />
-                <DateRangeFilter 
-                    startDate={startDate} 
-                    endDate={endDate} 
-                    onChange={(update) => setDateRange(update)} 
+                <DateRangeFilter
+                    startDate={startDate}
+                    endDate={endDate}
+                    onChange={(update) => setDateRange(update)}
                 />
-                <FilterPill 
-                    label="Balance" 
-                    value="Any" 
-                    icon={IconWallet} 
-                    onClick={() => {}} 
+                <FilterPill
+                    label="Balance"
+                    value="Any"
+                    icon={IconWallet}
+                    onClick={() => { }}
                 />
                 {(selectedStatuses.length > 0 || startDate) && (
-                    <div 
+                    <div
                         onClick={() => {
                             setSelectedStatuses([]);
                             setDateRange([null, null]);
@@ -229,6 +226,7 @@ const Users = () => {
                 <CustomDataTable
                     columns={columns}
                     data={data}
+                    onRowClicked={(row: any) => navigate(`/users/${row.id}`)}
                     noDataComponent={
                         <div className="p-12 text-center space-y-4">
                             <div className="w-16 h-16 bg-primary/5 rounded-full flex items-center justify-center text-primary mx-auto">
