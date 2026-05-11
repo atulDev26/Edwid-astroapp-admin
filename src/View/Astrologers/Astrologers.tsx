@@ -12,6 +12,7 @@ import {
     IconX
 } from '@tabler/icons-react';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Breadcrumb from '../../Components/Common/Breadcrumb';
 import Button from '../../Components/Common/Button';
 import CustomDataTable from '../../Components/Common/DataTable';
@@ -20,6 +21,7 @@ import Pagination from '../../Components/Common/Pagination';
 import SearchInput from '../../Components/Common/SearchInput';
 
 const Astrologers = () => {
+    const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
     const [statusFilter, setStatusFilter] = useState<string[]>([]);
@@ -405,6 +407,8 @@ const Astrologers = () => {
                     <CustomDataTable
                         columns={columns}
                         data={tableData}
+                        onRowClicked={(row: any) => navigate(`/astrologers/${row.id}`)}
+                        pointerOnHover
                     />
                     <Pagination
                         currentPage={currentPage}

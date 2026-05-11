@@ -3,6 +3,7 @@ import Login from './View/Auth/Login';
 import Dashboard from './View/Dashboard/Dashboard';
 import Users from './View/Users/Users';
 import Astrologers from './View/Astrologers/Astrologers';
+import AstrologerDetails from './View/Astrologers/AstrologerDetails';
 import AiAstrologers from './View/AiAstrologers/AiAstrologers';
 import LiveMonitor from './View/LiveMonitor/LiveMonitor';
 import Wallets from './View/Wallets/Wallets';
@@ -39,6 +40,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/users/:id" element={<UserDetails />} />
           <Route path="/astrologers" element={<Astrologers />} />
+          <Route path="/astrologers/:id" element={<AstrologerDetails />} />
           <Route path="/ai-astrologers" element={<AiAstrologers />} />
           <Route path="/live-monitor" element={<LiveMonitor />} />
           <Route path="/wallets" element={<Wallets />} />
