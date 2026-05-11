@@ -1,9 +1,8 @@
-import React from 'react';
-import AiProfileHeader from './Components/AiProfileHeader';
 import AiConfigurationHub from './Components/AiConfigurationHub';
-import SessionHistoryTable from './Components/SessionHistoryTable';
+import AiProfileHeader from './Components/AiProfileHeader';
 import PricingBusiness from './Components/PricingBusiness';
 import RatingsReviews from './Components/RatingsReviews';
+import SessionHistoryTable, { type Session } from './Components/SessionHistoryTable';
 
 const AiAstrologers = () => {
     // Mock data based on the screenshot
@@ -52,15 +51,37 @@ const AiAstrologers = () => {
         ]
     };
 
-    const sessionsData = [
-        { id: "1", dateTime: "Oct 24, 2023, 10:42 AM", user: "User1298", duration: "14m 20s", rating: "5.0" },
-        { id: "2", dateTime: "Oct 24, 2023, 09:15 AM", user: "Seeker99", duration: "8m 45s", rating: "4.0" },
+    const sessionsData: Session[] = [
+        {
+            id: "1",
+            dateTime: "Oct 24, 2023, 10:42 AM",
+            user: "User1298",
+            duration: "14m 20s",
+            rating: "5.0",
+            transcript: [
+                { role: 'user', message: 'Namaste, I am worried about my career shift.' },
+                { role: 'bot', message: 'Namaste. I see your Rahu Mahadasha is transitioning. This is a period of great transformation. Which field are you moving into?' },
+                { role: 'user', message: 'I am moving from Finance to Creative Arts.' },
+                { role: 'bot', message: 'A bold move. Your 5th house is strong, indicating success in creative endeavors, but Shani requires patience. You must dedicate the next 3 months to deep practice.' }
+            ]
+        },
+        {
+            id: "2",
+            dateTime: "Oct 24, 2023, 09:15 AM",
+            user: "Seeker99",
+            duration: "8m 45s",
+            rating: "4.0",
+            transcript: [
+                { role: 'user', message: 'Can you tell me about my marriage prospects?' },
+                { role: 'bot', message: 'Welcome seeker. Your 7th house lord is in the 9th house, suggesting a partner from a different cultural background.' }
+            ]
+        },
         { id: "3", dateTime: "Oct 23, 2023, 11:30 PM", user: "Guest_482", duration: "22m 10s", rating: "Unrated" },
     ];
 
     return (
         <div className="space-y-8 pb-12">
-            <AiProfileHeader {...profileData} onBack={() => {}} />
+            <AiProfileHeader {...profileData} onBack={() => { }} />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 {/* Main Content Area */}
