@@ -377,7 +377,7 @@ const Sessions = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="flex items-center justify-end gap-2">
                         <Button
                             variant="primary"
                             icon={IconFilter}
