@@ -22,3 +22,21 @@ export interface ApiErrorResponse {
 }
 
 export type ApiResult<T = unknown> = ApiResponse<T> | ApiErrorResponse;
+
+// User Types
+export type UserStatus = 'Active' | 'Inactive' | 'Blocked';
+export const STATUS_OPTIONS: UserStatus[] = ['Active', 'Inactive', 'Blocked'];
+
+export interface User {
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    registered: string;
+    walletBalance: number;
+    totalSpend: number;
+    status: UserStatus;
+    lastActive: string;
+    avatar: string;
+}
+

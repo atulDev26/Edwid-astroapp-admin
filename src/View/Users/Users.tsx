@@ -1,20 +1,17 @@
 import {
     IconBan,
-    IconDownload,
-    IconFilter,
-    IconPlus,
-    IconWallet,
-    IconUser,
-    IconUserPlus,
-    IconLogout,
+    IconCalendar,
+    IconChartBar,
     IconClock,
     IconDatabase,
-    IconSearch,
-    IconAdjustmentsHorizontal,
-    IconTrendingUp,
+    IconDownload,
+    IconFilter,
+    IconLogout,
     IconTrendingDown,
-    IconChartBar,
-    IconCalendar
+    IconTrendingUp,
+    IconUser,
+    IconUserPlus,
+    IconWallet
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +21,9 @@ import DateRangeFilter from '../../Components/Common/DateRangeFilter';
 import FilterPill from '../../Components/Common/FilterPill';
 import MultiSelectFilter from '../../Components/Common/MultiSelectFilter';
 import Pagination from '../../Components/Common/Pagination';
+import SearchInput from '../../Components/Common/SearchInput';
 import { cn } from '../../Utils/cn';
+import { STATUS_OPTIONS, type User } from '../../api/types';
 
 const Users = () => {
     const navigate = useNavigate();
@@ -34,9 +33,9 @@ const Users = () => {
     const [startDate, endDate] = dateRange;
     const rowsPerPage = 10;
 
-    const statusOptions = ['Active', 'Inactive', 'Blocked'];
+    const statusOptions = STATUS_OPTIONS;
 
-    const data = [
+    const data: User[] = [
         {
             id: 'USR-9021',
             name: 'Sarah Jenkins',
@@ -266,14 +265,10 @@ const Users = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-2">
                                 <label className="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Search Identity</label>
-                                <div className="relative">
-                                    <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" size={18} />
-                                    <input
-                                        type="text"
-                                        placeholder="Search by name or phone number"
-                                        className="w-full pl-10 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
-                                    />
-                                </div>
+                                <SearchInput
+                                    placeholder="Search by name or phone number"
+                                    onChange={(e) => { }} // Handle search logic here
+                                />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Joined Date Window</label>
