@@ -1,6 +1,6 @@
-import React from 'react';
-import { IconCreditCard, IconMessage2, IconPhone, IconVideo, IconTrendingUp } from '@tabler/icons-react';
 import { Switch } from '@headlessui/react';
+import { IconCreditCard, IconMessage2, IconPhone, IconTrendingUp, IconVideo } from '@tabler/icons-react';
+import React from 'react';
 import { cn } from '../../../Utils/cn';
 
 export interface PricingData {
@@ -72,20 +72,20 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                     <div className={cn("space-y-4", !pricingToggles.chat && "pointer-events-none")}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Actual Price (₹/min)</label>
-                            <input 
-                                type="text" 
-                                value={data.chat.actual} 
+                            <input
+                                type="text"
+                                value={data.chat.actual}
                                 onChange={(e) => handlePriceChange('chat', 'actual', e.target.value)}
-                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary"
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Offer Price (₹/min)</label>
-                            <input 
-                                type="text" 
-                                value={data.chat.offer} 
+                            <input
+                                type="text"
+                                value={data.chat.offer}
                                 onChange={(e) => handlePriceChange('chat', 'offer', e.target.value)}
-                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary"
                             />
                         </div>
                     </div>
@@ -120,20 +120,20 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                     <div className={cn("space-y-4", !pricingToggles.voice && "pointer-events-none")}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Actual Price (₹/min)</label>
-                            <input 
-                                type="text" 
-                                value={data.voice.actual} 
+                            <input
+                                type="text"
+                                value={data.voice.actual}
                                 onChange={(e) => handlePriceChange('voice', 'actual', e.target.value)}
-                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary"
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Offer Price (₹/min)</label>
-                            <input 
-                                type="text" 
-                                value={data.voice.offer} 
+                            <input
+                                type="text"
+                                value={data.voice.offer}
                                 onChange={(e) => handlePriceChange('voice', 'offer', e.target.value)}
-                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary"
                             />
                         </div>
                     </div>
@@ -168,20 +168,20 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                     <div className={cn("space-y-4", !pricingToggles.video && "pointer-events-none")}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Actual Price (₹/min)</label>
-                            <input 
-                                type="text" 
-                                value={data.video.actual} 
+                            <input
+                                type="text"
+                                value={data.video.actual}
                                 onChange={(e) => handlePriceChange('video', 'actual', e.target.value)}
-                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary"
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Offer Price (₹/min)</label>
-                            <input 
-                                type="text" 
-                                value={data.video.offer} 
+                            <input
+                                type="text"
+                                value={data.video.offer}
                                 onChange={(e) => handlePriceChange('video', 'offer', e.target.value)}
-                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary"
                             />
                         </div>
                     </div>
@@ -197,19 +197,19 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                     </div>
                     <span className="text-2xl font-black text-[#0A0E27]">{commission}%</span>
                 </div>
-                
+
                 <div className="px-4 space-y-6">
                     <div className="relative h-2 bg-[#EBEBFF] rounded-full group">
                         {/* Track Fill */}
-                        <div 
-                            className="absolute top-0 left-0 h-full bg-[#0A0E27] rounded-full transition-all duration-75" 
-                            style={{ width: `${commission}%` }} 
+                        <div
+                            className="absolute top-0 left-0 h-full bg-[#0A0E27] rounded-full transition-all duration-75"
+                            style={{ width: `${commission}%` }}
                         />
-                        
+
                         {/* Thumb */}
-                        <div 
-                            className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-[#0A0E27] border-4 border-white rounded-full shadow-lg pointer-events-none transition-all duration-75 z-10" 
-                            style={{ left: `calc(${commission}% - 12px)` }} 
+                        <div
+                            className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-[#0A0E27] border-4 border-white rounded-full shadow-lg pointer-events-none transition-all duration-75 z-10"
+                            style={{ left: `calc(${commission}% - 12px)` }}
                         />
 
                         {/* Hidden Input for Dragging */}

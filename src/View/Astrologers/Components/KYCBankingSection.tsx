@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconShieldCheck, IconChecks, IconPlus, IconUserCheck } from '@tabler/icons-react';
+import { IconChecks, IconPlus, IconShieldCheck, IconUserCheck } from '@tabler/icons-react';
 import Button from '../../../Components/Common/Button';
 
 export interface KYCData {

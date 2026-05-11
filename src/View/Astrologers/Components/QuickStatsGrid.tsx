@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconTrendingUp } from '@tabler/icons-react';
 import { cn } from '../../../Utils/cn';
 

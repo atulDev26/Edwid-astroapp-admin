@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconStar } from '@tabler/icons-react';
 import Button from '../../../Components/Common/Button';
 
@@ -17,7 +16,7 @@ interface FinancialVaultCardProps {
 
 export default function FinancialVaultCard({ data }: FinancialVaultCardProps) {
     return (
-        <div className="bg-[#0A0E27] rounded-[2rem] p-8 text-white relative overflow-hidden">
+        <div className="bg-[#0A0E27] rounded-4xl p-8 text-white relative overflow-hidden">
             <div className="flex items-center justify-between relative z-10">
                 <div className="flex items-center gap-3">
                     <IconStar size={28} className="text-[#FEAE2C]" fill="currentColor" />
@@ -29,7 +28,7 @@ export default function FinancialVaultCard({ data }: FinancialVaultCardProps) {
             <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10">
                 <div className="md:col-span-4 space-y-4 border-r border-white/10 pr-8">
                     <div className="space-y-4">
-                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">AVAILABLE BALANCE</p>
+                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-widest">AVAILABLE BALANCE</p>
                         <div className="space-y-1">
                             <div className="flex items-baseline gap-2">
                                 <span className="text-3xl font-black text-white">₹</span>
@@ -46,19 +45,19 @@ export default function FinancialVaultCard({ data }: FinancialVaultCardProps) {
 
                 <div className="md:col-span-8 grid grid-cols-2 gap-x-12 gap-y-10 pl-4">
                     <div className="space-y-3">
-                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">MONTHLY REV.</p>
+                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-widest">MONTHLY REV.</p>
                         <p className="text-3xl font-black text-white">₹ {data.monthlyRevenue}</p>
                     </div>
                     <div className="space-y-3">
-                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">LIFETIME EARNINGS</p>
+                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-widest">LIFETIME EARNINGS</p>
                         <p className="text-3xl font-black text-white">₹ {data.lifetimeEarnings}</p>
                     </div>
                     <div className="space-y-3">
-                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">TOTAL WITHDRAWALS</p>
+                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-widest">TOTAL WITHDRAWALS</p>
                         <p className="text-3xl font-black text-white">₹ {data.totalWithdrawals}</p>
                     </div>
                     <div className="space-y-3">
-                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">PENDING PAYOUTS</p>
+                        <p className="text-white/60 text-[11px] font-bold uppercase tracking-widest">PENDING PAYOUTS</p>
                         <p className="text-3xl font-black text-white">₹ {data.pendingPayouts}</p>
                     </div>
                 </div>

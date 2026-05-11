@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconStar, IconTrendingUp } from '@tabler/icons-react';
 
 export interface ReviewRecord {
@@ -17,7 +16,7 @@ interface RecentReviewsProps {
 
 export default function RecentReviews({ overallRating, reviews }: RecentReviewsProps) {
     return (
-        <div className="bg-white rounded-[2rem] border border-outline-variant shadow-sm p-8 space-y-6">
+        <div className="bg-white rounded-4xl border border-outline-variant shadow-sm p-8 space-y-6">
             <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="w-6 h-6 border-2 border-[#0A0E27] rounded flex items-center justify-center">
@@ -56,12 +55,12 @@ export default function RecentReviews({ overallRating, reviews }: RecentReviewsP
                             </div>
                             <div className="flex items-center gap-1 text-[#FEAE2C]">
                                 {[...Array(5)].map((_, idx) => (
-                                    <IconStar 
-                                        key={idx} 
-                                        size={16} 
-                                        fill={idx < review.rating ? "currentColor" : "none"} 
-                                        strokeWidth={idx < review.rating ? 0 : 2} 
-                                        className={idx < review.rating ? "" : "text-outline-variant"} 
+                                    <IconStar
+                                        key={idx}
+                                        size={16}
+                                        fill={idx < review.rating ? "currentColor" : "none"}
+                                        strokeWidth={idx < review.rating ? 0 : 2}
+                                        className={idx < review.rating ? "" : "text-outline-variant"}
                                     />
                                 ))}
                             </div>

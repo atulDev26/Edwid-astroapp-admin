@@ -1,7 +1,6 @@
-import React from 'react';
-import { IconStar, IconEdit, IconBan, IconPhone, IconMail, IconBriefcase, IconLanguage } from '@tabler/icons-react';
-import Button from '../../../Components/Common/Button';
 import { Switch } from '@headlessui/react';
+import { IconBan, IconBriefcase, IconEdit, IconLanguage, IconMail, IconPhone, IconStar } from '@tabler/icons-react';
+import Button from '../../../Components/Common/Button';
 import { cn } from '../../../Utils/cn';
 
 export interface ProfileData {
@@ -27,9 +26,9 @@ export default function ProfileHeader({ data, statusActive, setStatusActive }: P
     return (
         <div className="bg-white p-6 rounded-2xl border border-outline-variant shadow-sm flex flex-col md:flex-row gap-8 items-start relative">
             <div className="relative shrink-0">
-                <img 
-                    src={data.profileImage} 
-                    alt="Profile" 
+                <img
+                    src={data.profileImage}
+                    alt="Profile"
                     className="w-40 h-40 rounded-2xl object-cover"
                 />
                 {data.isOnline && (
@@ -65,7 +64,7 @@ export default function ProfileHeader({ data, statusActive, setStatusActive }: P
                                 Suspend/Ban
                             </Button>
                         </div>
-                        
+
                         <div className="bg-[#F2F4FF] border border-[#D0D5FF] p-3 rounded-xl flex items-center justify-between gap-8 shadow-sm w-full md:w-[280px]">
                             <div className="flex items-center gap-2.5">
                                 <div className={cn("w-2 h-2 rounded-full", statusActive ? "bg-[#246BFD]" : "bg-gray-400")} />

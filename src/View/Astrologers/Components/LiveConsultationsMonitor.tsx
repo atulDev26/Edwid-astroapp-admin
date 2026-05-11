@@ -1,5 +1,4 @@
-import React from 'react';
-import { IconTrendingUp, IconStar } from '@tabler/icons-react';
+import { IconStar, IconTrendingUp } from '@tabler/icons-react';
 import { cn } from '../../../Utils/cn';
 
 export interface ConsultationSession {
