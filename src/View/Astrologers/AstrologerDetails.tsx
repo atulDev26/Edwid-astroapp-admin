@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { IconMessage2, IconPhone, IconVideo, IconStar } from '@tabler/icons-react';
+import { IconMessage2, IconPhone, IconStar, IconVideo } from '@tabler/icons-react';
+import { useState } from 'react';
 import Breadcrumb from '../../Components/Common/Breadcrumb';
 
 // Sub-components
-import ProfileHeader, { type ProfileData } from './Components/ProfileHeader';
-import QuickStatsGrid from './Components/QuickStatsGrid';
 import FinancialVaultCard, { type FinancialData } from './Components/FinancialVaultCard';
-import PricingManagement, { type PricingData } from './Components/PricingManagement';
 import KYCBankingSection, { type KYCData } from './Components/KYCBankingSection';
 import LiveConsultationsMonitor, { type LiveConsultationsData } from './Components/LiveConsultationsMonitor';
-import RecentWithdrawals, { type WithdrawalRecord } from './Components/RecentWithdrawals';
+import PricingManagement, { type PricingData } from './Components/PricingManagement';
+import ProfileHeader, { type ProfileData } from './Components/ProfileHeader';
+import QuickStatsGrid from './Components/QuickStatsGrid';
 import RecentReviews, { type ReviewRecord } from './Components/RecentReviews';
+import RecentWithdrawals, { type WithdrawalRecord } from './Components/RecentWithdrawals';
 
 const AstrologerDetails = () => {
     const [statusActive, setStatusActive] = useState(true);
@@ -101,10 +100,10 @@ const AstrologerDetails = () => {
                 <Breadcrumb items={breadcrumbItems} />
             </div>
 
-            <ProfileHeader 
+            <ProfileHeader
                 data={profileData}
-                statusActive={statusActive} 
-                setStatusActive={setStatusActive} 
+                statusActive={statusActive}
+                setStatusActive={setStatusActive}
             />
 
             <QuickStatsGrid stats={statsData} />
@@ -112,13 +111,13 @@ const AstrologerDetails = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
                 <div className="lg:col-span-2 space-y-6">
                     <FinancialVaultCard data={financialData} />
-                    <PricingManagement 
+                    <PricingManagement
                         data={pricingData}
-                        pricingToggles={pricingToggles} 
-                        setPricingToggles={setPricingToggles} 
+                        pricingToggles={pricingToggles}
+                        setPricingToggles={setPricingToggles}
                     />
                 </div>
-                
+
                 <KYCBankingSection data={kycData} />
             </div>
 
