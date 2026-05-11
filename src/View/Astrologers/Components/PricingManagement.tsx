@@ -14,9 +14,25 @@ interface PricingManagementProps {
     data: PricingData;
     pricingToggles: { chat: boolean; voice: boolean; video: boolean };
     setPricingToggles: React.Dispatch<React.SetStateAction<{ chat: boolean; voice: boolean; video: boolean }>>;
+    setPricingData: React.Dispatch<React.SetStateAction<PricingData>>;
 }
 
-export default function PricingManagement({ data, pricingToggles, setPricingToggles }: PricingManagementProps) {
+export default function PricingManagement({ data, pricingToggles, setPricingToggles, setPricingData }: PricingManagementProps) {
+    const commission = data.platformCommission;
+
+    const handlePriceChange = (type: 'chat' | 'voice' | 'video', field: 'actual' | 'offer', value: string) => {
+        // Allow only numbers and a single decimal point
+        if (value !== "" && !/^\d*\.?\d*$/.test(value)) return;
+
+        setPricingData(prev => ({
+            ...prev,
+            [type]: {
+                ...prev[type],
+                [field]: value
+            }
+        }));
+    };
+
     return (
         <div className="bg-white rounded-[2rem] border border-outline-variant shadow-sm p-8 space-y-8">
             <div className="flex items-center gap-3">
@@ -28,7 +44,10 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Chat Pricing */}
-                <div className="bg-[#F8F9FC] p-6 rounded-[1.5rem] border border-outline-variant space-y-6">
+                <div className={cn(
+                    "bg-[#F8F9FC] p-6 rounded-[1.5rem] border border-outline-variant space-y-6 transition-all duration-300",
+                    !pricingToggles.chat && "opacity-50 grayscale-[0.8]"
+                )}>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-[#EBEBFF] rounded-xl flex items-center justify-center text-[#5456A6]">
@@ -50,20 +69,33 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                             <span className={cn(pricingToggles.chat ? 'translate-x-5' : 'translate-x-0', 'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200')} />
                         </Switch>
                     </div>
-                    <div className="space-y-4">
+                    <div className={cn("space-y-4", !pricingToggles.chat && "pointer-events-none")}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Actual Price (₹/min)</label>
-                            <input type="text" value={data.chat.actual} className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" readOnly />
+                            <input 
+                                type="text" 
+                                value={data.chat.actual} 
+                                onChange={(e) => handlePriceChange('chat', 'actual', e.target.value)}
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                            />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Offer Price (₹/min)</label>
-                            <input type="text" value={data.chat.offer} className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" readOnly />
+                            <input 
+                                type="text" 
+                                value={data.chat.offer} 
+                                onChange={(e) => handlePriceChange('chat', 'offer', e.target.value)}
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                            />
                         </div>
                     </div>
                 </div>
 
                 {/* Voice Pricing */}
-                <div className="bg-[#F8F9FC] p-6 rounded-[1.5rem] border border-outline-variant space-y-6">
+                <div className={cn(
+                    "bg-[#F8F9FC] p-6 rounded-[1.5rem] border border-outline-variant space-y-6 transition-all duration-300",
+                    !pricingToggles.voice && "opacity-50 grayscale-[0.8]"
+                )}>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-[#EBEBFF] rounded-xl flex items-center justify-center text-[#5456A6]">
@@ -85,20 +117,33 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                             <span className={cn(pricingToggles.voice ? 'translate-x-5' : 'translate-x-0', 'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200')} />
                         </Switch>
                     </div>
-                    <div className="space-y-4">
+                    <div className={cn("space-y-4", !pricingToggles.voice && "pointer-events-none")}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Actual Price (₹/min)</label>
-                            <input type="text" value={data.voice.actual} className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" readOnly />
+                            <input 
+                                type="text" 
+                                value={data.voice.actual} 
+                                onChange={(e) => handlePriceChange('voice', 'actual', e.target.value)}
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                            />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Offer Price (₹/min)</label>
-                            <input type="text" value={data.voice.offer} className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" readOnly />
+                            <input 
+                                type="text" 
+                                value={data.voice.offer} 
+                                onChange={(e) => handlePriceChange('voice', 'offer', e.target.value)}
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                            />
                         </div>
                     </div>
                 </div>
 
                 {/* Video Pricing */}
-                <div className="bg-[#F8F9FC] p-6 rounded-[1.5rem] border border-outline-variant space-y-6 opacity-60">
+                <div className={cn(
+                    "bg-[#F8F9FC] p-6 rounded-[1.5rem] border border-outline-variant space-y-6 transition-all duration-300",
+                    !pricingToggles.video && "opacity-50 grayscale-[0.8]"
+                )}>
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-[#EBEBFF] rounded-xl flex items-center justify-center text-[#5456A6]">
@@ -120,14 +165,24 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                             <span className={cn(pricingToggles.video ? 'translate-x-5' : 'translate-x-0', 'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200')} />
                         </Switch>
                     </div>
-                    <div className="space-y-4">
+                    <div className={cn("space-y-4", !pricingToggles.video && "pointer-events-none")}>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Actual Price (₹/min)</label>
-                            <input type="text" value={data.video.actual} className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" readOnly />
+                            <input 
+                                type="text" 
+                                value={data.video.actual} 
+                                onChange={(e) => handlePriceChange('video', 'actual', e.target.value)}
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                            />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Offer Price (₹/min)</label>
-                            <input type="text" value={data.video.offer} className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" readOnly />
+                            <input 
+                                type="text" 
+                                value={data.video.offer} 
+                                onChange={(e) => handlePriceChange('video', 'offer', e.target.value)}
+                                className="w-full bg-white border border-outline-variant rounded-xl px-4 py-3 font-bold text-on-surface focus:outline-none focus:border-primary" 
+                            />
                         </div>
                     </div>
                 </div>
@@ -140,18 +195,37 @@ export default function PricingManagement({ data, pricingToggles, setPricingTogg
                         <IconTrendingUp size={24} />
                         <h3 className="text-lg font-bold text-on-surface">Platform Commission Control</h3>
                     </div>
-                    <span className="text-2xl font-black text-[#0A0E27]">{data.platformCommission}%</span>
+                    <span className="text-2xl font-black text-[#0A0E27]">{commission}%</span>
                 </div>
                 
                 <div className="px-4 space-y-6">
-                    <div className="relative h-2 bg-[#EBEBFF] rounded-full">
-                        <div className="absolute top-0 left-0 h-full bg-[#0A0E27] rounded-full" style={{ width: `${data.platformCommission}%` }} />
-                        <div className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-[#0A0E27] border-4 border-white rounded-full shadow-lg cursor-pointer" style={{ left: `${data.platformCommission}%` }} />
+                    <div className="relative h-2 bg-[#EBEBFF] rounded-full group">
+                        {/* Track Fill */}
+                        <div 
+                            className="absolute top-0 left-0 h-full bg-[#0A0E27] rounded-full transition-all duration-75" 
+                            style={{ width: `${commission}%` }} 
+                        />
+                        
+                        {/* Thumb */}
+                        <div 
+                            className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-[#0A0E27] border-4 border-white rounded-full shadow-lg pointer-events-none transition-all duration-75 z-10" 
+                            style={{ left: `calc(${commission}% - 12px)` }} 
+                        />
+
+                        {/* Hidden Input for Dragging */}
+                        <input
+                            type="range"
+                            min="0"
+                            max="100"
+                            value={commission}
+                            onChange={(e) => setPricingData(prev => ({ ...prev, platformCommission: parseInt(e.target.value) }))}
+                            className="absolute -top-2 left-0 w-full h-6 opacity-0 cursor-pointer z-20"
+                        />
                     </div>
                     <div className="flex justify-between text-[13px] font-bold text-on-surface-variant">
-                        <span>0%</span>
-                        <span>50%</span>
-                        <span>100%</span>
+                        <span className="cursor-pointer hover:text-on-surface" onClick={() => setPricingData(prev => ({ ...prev, platformCommission: 0 }))}>0%</span>
+                        <span className="cursor-pointer hover:text-on-surface" onClick={() => setPricingData(prev => ({ ...prev, platformCommission: 50 }))}>50%</span>
+                        <span className="cursor-pointer hover:text-on-surface" onClick={() => setPricingData(prev => ({ ...prev, platformCommission: 100 }))}>100%</span>
                     </div>
                 </div>
             </div>

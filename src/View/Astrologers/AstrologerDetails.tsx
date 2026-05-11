@@ -20,6 +20,7 @@ const AstrologerDetails = () => {
         video: false
     });
 
+
     const breadcrumbItems = [
         { label: 'Astrologers', href: '/astrologers' },
         { label: 'Acharya Vedant' }
@@ -55,12 +56,12 @@ const AstrologerDetails = () => {
         lastUpdated: 'Just now'
     };
 
-    const pricingData: PricingData = {
+    const [pricingData, setPricingData] = useState<PricingData>({
         chat: { actual: '15.00', offer: '12.00' },
         voice: { actual: '25.00', offer: '20.00' },
         video: { actual: '45.00', offer: '40.00' },
         platformCommission: 35
-    };
+    });
 
     const kycData: KYCData = {
         idFront: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0Nn9V3kCj7L6QfI0_8m-6q9r4T7a-xX8V-g&s',
@@ -115,6 +116,7 @@ const AstrologerDetails = () => {
                         data={pricingData}
                         pricingToggles={pricingToggles}
                         setPricingToggles={setPricingToggles}
+                        setPricingData={setPricingData}
                     />
                 </div>
 
