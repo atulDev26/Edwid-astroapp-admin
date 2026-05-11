@@ -24,8 +24,15 @@ export default function PricingBusiness({ chatRate, totalRevenue, revenue30d }: 
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-[#0A0E27]">₹</span>
                         <input 
                             type="number" 
+                            min="0"
                             defaultValue={chatRate}
-                            className="w-full bg-white border border-outline-variant rounded-xl pl-8 pr-4 py-3 font-bold text-[#0A0E27] focus:outline-none focus:border-[#246BFD]"
+                            onKeyDown={(e) => {
+                                if (e.key === '-' || e.key === 'e') {
+                                    e.preventDefault();
+                                }
+                            }}
+                            onWheel={(e) => (e.target as HTMLInputElement).blur()}
+                            className="w-full bg-white border border-outline-variant rounded-xl pl-8 pr-4 py-3 font-bold text-[#0A0E27] focus:outline-none focus:border-[#246BFD] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         />
                     </div>
                 </div>
