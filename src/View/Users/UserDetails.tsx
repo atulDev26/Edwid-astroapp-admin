@@ -1,5 +1,6 @@
 import {
     IconBan,
+    IconBell,
     IconBuildingBank,
     IconCalendar,
     IconCheck,
@@ -20,6 +21,7 @@ import {
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Breadcrumb from '../../Components/Common/Breadcrumb';
+import EditProfile from './Components/EditProfile';
 import { cn } from '../../Utils/cn';
 
 const UserDetails = () => {
@@ -106,12 +108,16 @@ const UserDetails = () => {
 
                     {/* Actions */}
                     <div className="flex items-center gap-2">
-                        <button className="flex items-center gap-2 bg-[#1A1C3D] text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-[#1A1C3D]/90 transition-all">
-                            <IconPencil size={18} />
-                            Edit Profile
-                        </button>
-                        <button className="p-2.5 rounded-xl border border-outline-variant hover:bg-surface-container transition-all">
-                            <IconPlayerPlay size={20} className="text-on-surface-variant" />
+                        <EditProfile 
+                            userData={{
+                                name: mockUser.name,
+                                email: mockUser.email,
+                                phone: mockUser.phone,
+                                location: mockUser.location
+                            }}
+                        />
+                        <button className="p-2.5 rounded-xl border border-outline-variant hover:bg-primary/5 hover:border-primary group transition-all" title="Send Notification">
+                            <IconBell size={20} className="text-on-surface-variant group-hover:text-primary" />
                         </button>
                         <button className="p-2.5 rounded-xl border border-outline-variant hover:bg-error/5 hover:border-error group transition-all">
                             <IconBan size={20} className="text-on-surface-variant group-hover:text-error" />
