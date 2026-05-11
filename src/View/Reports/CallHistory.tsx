@@ -232,11 +232,11 @@ const CallHistory = () => {
     return (
         <div className="space-y-8">
             {/* Breadcrumbs */}
-            <div className="flex items-center gap-2 text-sm font-medium text-[#464651]">
+            <div className="flex items-center gap-2 text-sm font-medium text-on-surface-variant">
                 <Link to="/dashboard" className="hover:text-primary transition-colors">Dashboard</Link>
-                <IconChevronRight size={14} className="text-[#464651]/50" />
+                <IconChevronRight size={14} className="text-on-surface-variant/50" />
                 <Link to="/reports" className="hover:text-primary transition-colors">Reports</Link>
-                <IconChevronRight size={14} className="text-[#464651]/50" />
+                <IconChevronRight size={14} className="text-on-surface-variant/50" />
                 <span className="text-[#0A0E27] font-bold">Call History</span>
             </div>
 
@@ -251,127 +251,133 @@ const CallHistory = () => {
                             {stat.icon}
                         </div>
                         <div className="flex flex-col gap-0.5">
-                            <span className="text-[10px] font-bold text-[#464651] uppercase tracking-widest">{stat.label}</span>
+                            <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">{stat.label}</span>
                             <span className="text-2xl font-black text-[#0A0E27]">{stat.value}</span>
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* Filters Bar */}
-            <div className="bg-[#F8F9FC] p-4 rounded-[28px] border border-outline-variant/30 shadow-sm overflow-x-auto">
-                <div className="flex items-end gap-3 ">
+            {/* Filters Section */}
+            <div className="space-y-4">
+                {/* Date Filter Bar */}
+                <div className="bg-[#F8F9FC] p-4 rounded-[28px] border border-outline-variant/30 shadow-sm overflow-x-auto">
+                    <div className="flex items-end gap-3">
+                        {/* Date From */}
+                        <div className="min-w-[150px] space-y-2">
+                            <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
+                                Date From
+                            </label>
 
-                    {/* Date From */}
-                    <div className="min-w-[150px] space-y-2">
-                        <label className="text-[11px] font-bold text-[#464651] uppercase tracking-wider ml-1">
-                            Date From
-                        </label>
+                            <div className="relative">
+                                <DatePicker
+                                    selected={startDate}
+                                    onChange={(date) => setStartDate(date)}
+                                    placeholderText="dd-mm-yyyy"
+                                    wrapperClassName="w-full"
+                                    className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:border-primary transition-all placeholder:text-[#98A2B3]"
+                                />
 
-                        <div className="relative">
-                            <DatePicker
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                                placeholderText="dd-mm-yyyy"
-                                wrapperClassName="w-full"
-                                className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:border-primary transition-all placeholder:text-[#98A2B3]"
-                            />
+                                <IconCalendar
+                                    size={18}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
+                                />
+                            </div>
+                        </div>
 
-                            <IconCalendar
-                                size={18}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
-                            />
+                        {/* Date To */}
+                        <div className="min-w-[150px] space-y-2">
+                            <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
+                                Date To
+                            </label>
+
+                            <div className="relative">
+                                <DatePicker
+                                    selected={endDate}
+                                    onChange={(date) => setEndDate(date)}
+                                    placeholderText="dd-mm-yyyy"
+                                    wrapperClassName="w-full"
+                                    className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:border-primary transition-all placeholder:text-[#98A2B3]"
+                                />
+
+                                <IconCalendar
+                                    size={18}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
+                                />
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    {/* Date To */}
-                    <div className="min-w-[150px] space-y-2">
-                        <label className="text-[11px] font-bold text-[#464651] uppercase tracking-wider ml-1">
-                            Date To
-                        </label>
+                {/* Other Filters Bar */}
+                <div className="bg-[#F8F9FC] p-4 rounded-[28px] border border-outline-variant/30 shadow-sm overflow-x-auto">
+                    <div className="flex items-end gap-3">
+                        {/* Search */}
+                        <div className="min-w-[180px] space-y-2">
+                            <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
+                                Search (Name / Mobile)
+                            </label>
 
-                        <div className="relative">
-                            <DatePicker
-                                selected={endDate}
-                                onChange={(date) => setEndDate(date)}
-                                placeholderText="dd-mm-yyyy"
-                                wrapperClassName="w-full"
-                                className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:border-primary transition-all placeholder:text-[#98A2B3]"
-                            />
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    placeholder="Ex: John Doe"
+                                    className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:border-primary transition-all placeholder:text-[#98A2B3]"
+                                />
 
-                            <IconCalendar
-                                size={18}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
-                            />
+                                <IconSearch
+                                    size={18}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Status */}
+                        <div className="min-w-[150px] space-y-2">
+                            <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
+                                Status
+                            </label>
+
+                            <div className="relative">
+                                <select className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium appearance-none focus:outline-none focus:border-primary transition-all">
+                                    <option>All Status</option>
+                                </select>
+
+                                <IconChevronDown
+                                    size={18}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Rating */}
+                        <div className="min-w-[150px] space-y-2">
+                            <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
+                                Rating
+                            </label>
+
+                            <div className="relative">
+                                <select className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium appearance-none focus:outline-none focus:border-primary transition-all">
+                                    <option>Any Rating</option>
+                                </select>
+
+                                <IconChevronDown
+                                    size={18}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
+                                />
+                            </div>
+                        </div>
+
+                        {/* Button */}
+                        <div className="min-w-[170px]">
+                            <Button
+                                variant="primary"
+                                className="w-full h-11 bg-[#FFB020] text-[#0A0E27] hover:bg-[#ffb020ea] font-bold rounded-xl shadow-sm border-none"
+                            >
+                                Reset
+                            </Button>
                         </div>
                     </div>
-
-                    {/* Search */}
-                    <div className="min-w-[180px] space-y-2">
-                        <label className="text-[11px] font-bold text-[#464651] uppercase tracking-wider ml-1">
-                            Search (Name / Mobile)
-                        </label>
-
-                        <div className="relative">
-                            <input
-                                type="text"
-                                placeholder="Ex: John Doe"
-                                className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:border-primary transition-all placeholder:text-[#98A2B3]"
-                            />
-
-                            <IconSearch
-                                size={18}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Status */}
-                    <div className="min-w-[150px] space-y-2">
-                        <label className="text-[11px] font-bold text-[#464651] uppercase tracking-wider ml-1">
-                            Status
-                        </label>
-
-                        <div className="relative">
-                            <select className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium appearance-none focus:outline-none focus:border-primary transition-all">
-                                <option>All Status</option>
-                            </select>
-
-                            <IconChevronDown
-                                size={18}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Rating */}
-                    <div className="min-w-[150px] space-y-2">
-                        <label className="text-[11px] font-bold text-[#464651] uppercase tracking-wider ml-1">
-                            Rating
-                        </label>
-
-                        <div className="relative">
-                            <select className="w-full h-11 px-4 pr-10 rounded-xl border border-outline-variant bg-white text-sm font-medium appearance-none focus:outline-none focus:border-primary transition-all">
-                                <option>Any Rating</option>
-                            </select>
-
-                            <IconChevronDown
-                                size={18}
-                                className="absolute right-4 top-1/2 -translate-y-1/2 text-[#98A2B3] pointer-events-none"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Button */}
-                    <div className="min-w-[170px]">
-                        <Button
-                            variant="outlined"
-                            className="w-full h-11 border-[#D0D5DD] bg-[#E4E7EC] text-[#0A0E27] hover:bg-[#D0D5DD] font-bold rounded-xl shadow-sm border-none"
-                        >
-                            Reset Filters
-                        </Button>
-                    </div>
-
                 </div>
             </div>
 

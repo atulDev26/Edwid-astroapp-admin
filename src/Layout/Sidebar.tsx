@@ -83,6 +83,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                         <NavLink
                             key={item.path}
                             to={item.path}
+                            end={item.path === '/reports'}
                             onClick={() => {
                                 if (window.innerWidth < 1024) onClose();
                             }}
