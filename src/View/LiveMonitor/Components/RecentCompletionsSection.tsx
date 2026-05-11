@@ -1,8 +1,8 @@
+import { IconStar } from '@tabler/icons-react';
 import React from 'react';
-import { IconStar, IconExternalLink } from '@tabler/icons-react';
+import Button from '../../../Components/Common/Button';
 import CustomDataTable from '../../../Components/Common/DataTable';
 import Pagination from '../../../Components/Common/Pagination';
-import Button from '../../../Components/Common/Button';
 import { type Completion } from '../../../api/types';
 
 interface RecentCompletionsSectionProps {

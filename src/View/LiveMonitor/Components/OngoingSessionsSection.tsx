@@ -1,7 +1,7 @@
+import { IconArrowsExchange, IconChevronDown, IconEye, IconFlag, IconMessage2, IconPhone } from '@tabler/icons-react';
 import React from 'react';
-import { IconMessage2, IconPhone, IconEye, IconArrowsExchange, IconFlag, IconChevronDown, IconCircleFilled } from '@tabler/icons-react';
-import CustomDataTable from '../../../Components/Common/DataTable';
 import Button from '../../../Components/Common/Button';
+import CustomDataTable from '../../../Components/Common/DataTable';
 import { type Session } from '../../../api/types';
 
 interface OngoingSessionsSectionProps {
