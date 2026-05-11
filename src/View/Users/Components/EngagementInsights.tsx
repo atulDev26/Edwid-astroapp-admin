@@ -4,12 +4,12 @@ import { IconStars, IconTrendingUp } from '@tabler/icons-react';
 const EngagementInsights = () => {
     return (
         <div className="bg-white rounded-[32px] border border-outline-variant p-8 space-y-6 shadow-sm">
-            <h3 className="text-[12px] font-bold text-[#7C7E9A] tracking-[0.05em] uppercase">ENGAGEMENT INSIGHTS</h3>
+            <h3 className="text-[12px] font-bold text-[#7C7E9A] tracking-wider uppercase">ENGAGEMENT INSIGHTS</h3>
 
             <div className="space-y-4">
                 {/* Top Astrologer */}
                 <div className="p-5 bg-[#F8F9FE] rounded-[28px] border border-[#EEF0F7] flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-[20px] bg-white flex items-center justify-center text-[#00B67A] shadow-sm flex-shrink-0">
+                    <div className="w-14 h-14 rounded-[20px] bg-white flex items-center justify-center text-[#00B67A] shadow-sm shrink-0">
                         <IconStars size={26} />
                     </div>
                     <div className="flex-1 min-w-0">
@@ -23,7 +23,7 @@ const EngagementInsights = () => {
 
                 {/* Main Service */}
                 <div className="p-5 bg-[#F8F9FE] rounded-[28px] border border-[#EEF0F7] flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-[20px] bg-white flex items-center justify-center text-[#1A1C3D] shadow-sm flex-shrink-0">
+                    <div className="w-14 h-14 rounded-[20px] bg-white flex items-center justify-center text-[#1A1C3D] shadow-sm shrink-0">
                         <IconTrendingUp size={26} />
                     </div>
                     <div className="flex-1 min-w-0">
