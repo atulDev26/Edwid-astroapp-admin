@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { IconHistory, IconMessage2, IconUser, IconClock, IconStar } from '@tabler/icons-react';
-import CustomModel from '../../../Components/Common/CustomModel';
+import { IconClock, IconHistory, IconMessage2, IconStar, IconUser } from '@tabler/icons-react';
+import { useState } from 'react';
 import Button from '../../../Components/Common/Button';
+import CustomModel from '../../../Components/Common/CustomModel';
 
 export interface Session {
     id: string;
@@ -62,7 +62,7 @@ export default function SessionHistoryTable({ sessions }: SessionHistoryTablePro
                                         </div>
                                     </td>
                                     <td className="px-8 py-5 text-right">
-                                        <Button 
+                                        <Button
                                             variant="ghost"
                                             onClick={() => handleViewSession(session)}
                                             className="text-[#246BFD] font-bold text-[15px] hover:underline hover:bg-transparent p-0 h-auto"
@@ -118,11 +118,10 @@ export default function SessionHistoryTable({ sessions }: SessionHistoryTablePro
                             {selectedSession.transcript ? (
                                 selectedSession.transcript.map((chat, idx) => (
                                     <div key={idx} className={`flex ${chat.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                        <div className={`max-w-[80%] p-4 rounded-2xl text-sm font-medium ${
-                                            chat.role === 'user' 
-                                            ? 'bg-[#246BFD] text-white rounded-tr-none' 
-                                            : 'bg-[#F2F4FF] text-[#0A0E27] rounded-tl-none border border-[#D0D5FF]'
-                                        }`}>
+                                        <div className={`max-w-[80%] p-4 rounded-2xl text-sm font-medium ${chat.role === 'user'
+                                                ? 'bg-[#246BFD] text-white rounded-tr-none'
+                                                : 'bg-[#F2F4FF] text-[#0A0E27] rounded-tl-none border border-[#D0D5FF]'
+                                            }`}>
                                             {chat.message}
                                         </div>
                                     </div>
