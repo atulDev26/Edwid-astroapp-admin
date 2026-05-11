@@ -327,9 +327,6 @@ const Astrologers = () => {
                     <Button variant="outlined" className="flex-1 sm:flex-none bg-white border-[#C7C5D3] text-on-surface-variant flex items-center justify-center gap-2" icon={IconDownload}>
                         Export CSV
                     </Button>
-                    <Button variant="primary" className="flex-1 sm:flex-none bg-[#040052] text-white flex items-center justify-center gap-2" icon={IconPlus}>
-                        Onboard Astrologer
-                    </Button>
                 </div>
             </div>
 
