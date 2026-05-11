@@ -144,7 +144,6 @@ const Astrologers = () => {
         {
             name: 'ASTROLOGER',
             selector: (row: any) => row.name,
-            sortable: true,
             minWidth: '220px',
             cell: (row: any) => (
                 <div className="flex items-center gap-3 py-2">
