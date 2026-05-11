@@ -176,6 +176,7 @@ const Sessions = () => {
         });
     }, [appliedFilters]);
 
+
     const handleApplyFilters = () => {
         setAppliedFilters({
             startDate,
@@ -201,6 +202,28 @@ const Sessions = () => {
             rating: []
         });
         setCurrentPage(1);
+    };
+
+    const handleExportCSV = () => {
+        const headers = ['Date', 'User', 'Astrologer', 'Type', 'Duration', 'Revenue', 'Status'];
+        const csvRows = filteredData.map(session => [
+            session.date.toLocaleDateString(),
+            session.user.name,
+            session.astrologer.name,
+            session.type,
+            session.duration,
+            session.revenue,
+            session.status
+        ].join(','));
+        
+        const csvContent = [headers.join(','), ...csvRows].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `sessions_export_${new Date().toISOString().split('T')[0]}.csv`);
+        link.click();
+        URL.revokeObjectURL(url);
     };
 
     const columns = [
@@ -356,9 +379,10 @@ const Sessions = () => {
                                 <IconCalendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant z-10" />
                                 <DatePicker
                                     selected={startDate}
-                                    onChange={(date) => setStartDate(date)}
+                                    onChange={(date: Date | null) => setStartDate(date)}
                                     placeholderText="dd-mm-yyyy"
                                     dateFormat="dd-MM-yyyy"
+                                    wrapperClassName="w-full"
                                     className="w-full h-11 pl-11 pr-4 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-[#98A2B3]"
                                 />
                             </div>
@@ -369,22 +393,23 @@ const Sessions = () => {
                                 <IconCalendar size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant z-10" />
                                 <DatePicker
                                     selected={endDate}
-                                    onChange={(date) => setEndDate(date)}
+                                    onChange={(date: Date | null) => setEndDate(date)}
                                     placeholderText="dd-mm-yyyy"
                                     dateFormat="dd-MM-yyyy"
+                                    wrapperClassName="w-full"
                                     className="w-full h-11 pl-11 pr-4 rounded-xl border border-outline-variant bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-[#98A2B3]"
                                 />
                             </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-end gap-2">
+                    <div className="space-y-2">
                         <Button
                             variant="primary"
                             icon={IconFilter}
                             onClick={handleApplyFilters}
-                            className="bg-[#0A0E27] hover:bg-[#1a1f3d] h-11 px-8 rounded-xl shadow-lg shadow-black/5 text-sm font-bold md:w-auto"
+                            className="bg-[#0A0E27] hover:bg-[#1a1f3d] h-11 px-8 rounded-xl shadow-lg shadow-black/5 text-sm font-bold w-full md:w-auto"
                         >
-                            Filter
+                            Apply Filter
                         </Button>
                     </div>
 
@@ -412,18 +437,25 @@ const Sessions = () => {
                             onChange={setSelectedRating}
                         />
                     </div>
-                    <div className="flex items-center justify-between sm:justify-start sm:gap-8 md:gap-6 md:pr-2">
-                        <button className="flex items-center gap-2 text-on-surface font-bold text-sm hover:text-primary transition-colors whitespace-nowrap">
-                            <IconDownload size={18} className="text-on-surface-variant" />
-                            Export CSV
-                        </button>
-                        <button
-                            onClick={handleReset}
-                            className="flex items-center gap-2 text-[#D32F2F] font-bold text-sm hover:text-red-700 transition-colors whitespace-nowrap"
+                    <div className="flex items-center justify-between sm:justify-start gap-4 sm:gap-6 md:pr-2">
+                        <Button
+                            variant="outlined"
+                            size="sm"
+                            icon={IconDownload}
+                            onClick={handleExportCSV}
+                            className="text-on-surface-variant border-outline-variant hover:bg-surface-container-low font-bold px-4 rounded-lg"
                         >
-                            <IconRotate size={18} />
+                            Export CSV
+                        </Button>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            icon={IconRotate}
+                            onClick={handleReset}
+                            className="text-error hover:bg-error/5 font-bold px-4 rounded-lg"
+                        >
                             Reset
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>
