@@ -122,7 +122,7 @@ const RecentCompletionsSection: React.FC<RecentCompletionsSectionProps> = ({
                 </div>
             </div>
 
-            <div className="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+            <div className="bg-white rounded-md border border-outline-variant shadow-sm overflow-hidden">
                 <CustomDataTable
                     columns={columns}
                     data={completions}
