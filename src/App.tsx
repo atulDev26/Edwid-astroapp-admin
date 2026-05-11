@@ -9,6 +9,7 @@ import LiveMonitor from './View/LiveMonitor/LiveMonitor';
 import Wallets from './View/Wallets/Wallets';
 import Payouts from './View/Payouts/Payouts';
 import Reports from './View/Reports/Reports';
+import CallHistory from './View/Reports/CallHistory';
 import PujaBooking from './View/PujaBooking/PujaBooking';
 import Store from './View/Store/Store';
 import Content from './View/Content/Content';
@@ -48,6 +49,7 @@ function App() {
           <Route path="/wallets" element={<Wallets />} />
           <Route path="/payouts" element={<Payouts />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/reports/call-history" element={<CallHistory />} />
           <Route path="/puja-booking" element={<PujaBooking />} />
           <Route path="/store" element={<Store />} />
           <Route path="/content" element={<Content />} />
