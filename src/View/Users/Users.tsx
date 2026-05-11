@@ -14,6 +14,8 @@ import {
     IconWallet
 } from '@tabler/icons-react';
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
 import Button from '../../Components/Common/Button';
 import CustomDataTable from '../../Components/Common/DataTable';
@@ -30,6 +32,7 @@ const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([null, null]);
     const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
     const [startDate, endDate] = dateRange;
     const rowsPerPage = 10;
 
@@ -246,11 +249,12 @@ const Users = () => {
                         onClick={() => { }}
                     />
 
-                    {(selectedStatuses.length > 0 || startDate) && (
+                    {(selectedStatuses.length > 0 || startDate || searchTerm) && (
                         <div
                             onClick={() => {
                                 setSelectedStatuses([]);
                                 setDateRange([null, null]);
+                                setSearchTerm('');
                             }}
                             className="flex items-center gap-2 text-error font-bold text-sm cursor-pointer hover:opacity-80 transition-all ml-2"
                         >
@@ -267,28 +271,54 @@ const Users = () => {
                                 <label className="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Search Identity</label>
                                 <SearchInput
                                     placeholder="Search by name or phone number"
-                                    onChange={(e) => { }} // Handle search logic here
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                             </div>
                             <div className="space-y-2">
                                 <label className="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Joined Date Window</label>
                                 <div className="flex items-center gap-2">
                                     <div className="relative flex-1">
-                                        <input
-                                            type="text"
-                                            placeholder="Start Date"
-                                            className="w-full pl-4 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                                        <DatePicker
+                                            selected={startDate}
+                                            onChange={(date) => setDateRange([date, endDate])}
+                                            selectsStart
+                                            startDate={startDate}
+                                            endDate={endDate}
+                                            placeholderText="Start Date"
+                                            customInput={
+                                                <div className="relative">
+                                                    <input
+                                                        type="text"
+                                                        readOnly
+                                                        className="w-full pl-4 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors cursor-pointer"
+                                                    />
+                                                    <IconCalendar className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" size={18} />
+                                                </div>
+                                            }
                                         />
-                                        <IconCalendar className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant" size={18} />
                                     </div>
                                     <span className="text-on-surface-variant">→</span>
                                     <div className="relative flex-1">
-                                        <input
-                                            type="text"
-                                            placeholder="End Date"
-                                            className="w-full pl-4 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                                        <DatePicker
+                                            selected={endDate}
+                                            onChange={(date) => setDateRange([startDate, date])}
+                                            selectsEnd
+                                            startDate={startDate}
+                                            endDate={endDate}
+                                            minDate={startDate || undefined}
+                                            placeholderText="End Date"
+                                            customInput={
+                                                <div className="relative">
+                                                    <input
+                                                        type="text"
+                                                        readOnly
+                                                        className="w-full pl-4 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors cursor-pointer"
+                                                    />
+                                                    <IconCalendar className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none" size={18} />
+                                                </div>
+                                            }
                                         />
-                                        <IconCalendar className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant" size={18} />
                                     </div>
                                 </div>
                             </div>
