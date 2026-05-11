@@ -120,9 +120,6 @@ const RecentCompletionsSection: React.FC<RecentCompletionsSectionProps> = ({
                     <h2 className="text-xl font-bold text-[#0A0E27]">RECENT COMPLETIONS</h2>
                     <p className="text-sm text-on-surface-variant font-medium">History of the last 5 sessions</p>
                 </div>
-                <button className="flex items-center gap-1.5 text-sm font-bold text-[#246BFD] hover:underline">
-                    View All History <IconExternalLink size={16} />
-                </button>
             </div>
 
             <div className="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
