@@ -1,4 +1,3 @@
-import React from 'react';
 import { IconBusinessplan } from '@tabler/icons-react';
 
 interface PricingBusinessProps {
@@ -22,8 +21,8 @@ export default function PricingBusiness({ chatRate, totalRevenue, revenue30d }: 
                     <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider">Chat Rate (₹/min)</label>
                     <div className="relative">
                         <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-[#0A0E27]">₹</span>
-                        <input 
-                            type="number" 
+                        <input
+                            type="number"
                             min="0"
                             defaultValue={chatRate}
                             onKeyDown={(e) => {
