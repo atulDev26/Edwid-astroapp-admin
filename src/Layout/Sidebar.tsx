@@ -17,7 +17,8 @@ import {
     IconX,
     IconPlus,
     IconHistory,
-    IconPhoneCall
+    IconPhoneCall,
+    IconMessage2
 } from '@tabler/icons-react';
 import Button from '../Components/Common/Button';
 import { cn } from '../Utils/cn';
@@ -35,6 +36,7 @@ const menuItems = [
     { icon: IconDeviceTv, label: 'Live Monitor', path: '/live-monitor' },
     { icon: IconHistory, label: 'Sessions', path: '/sessions' },
     { icon: IconPhoneCall, label: 'Call History', path: '/call-history' },
+    { icon: IconMessage2, label: 'Chat History', path: '/chat-history' },
     { icon: IconWallet, label: 'Wallets', path: '/wallets' },
     { icon: IconCash, label: 'Payouts', path: '/payouts' },
     { icon: IconChartBar, label: 'Reports', path: '/reports' },
