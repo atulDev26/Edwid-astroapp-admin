@@ -1,6 +1,5 @@
 import {
     IconBan,
-    IconBell,
     IconBuildingBank,
     IconCalendar,
     IconCheck,
@@ -22,6 +21,8 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Breadcrumb from '../../Components/Common/Breadcrumb';
 import EditProfile from './Components/EditProfile';
+import UpdateStatus from './Components/UpdateStatus';
+import SendNotification from './Components/SendNotification';
 import { cn } from '../../Utils/cn';
 
 const UserDetails = () => {
@@ -116,12 +117,11 @@ const UserDetails = () => {
                                 location: mockUser.location
                             }}
                         />
-                        <button className="p-2.5 rounded-xl border border-outline-variant hover:bg-primary/5 hover:border-primary group transition-all" title="Send Notification">
-                            <IconBell size={20} className="text-on-surface-variant group-hover:text-primary" />
-                        </button>
-                        <button className="p-2.5 rounded-xl border border-outline-variant hover:bg-error/5 hover:border-error group transition-all">
-                            <IconBan size={20} className="text-on-surface-variant group-hover:text-error" />
-                        </button>
+                        <SendNotification userName={mockUser.name} />
+                        <UpdateStatus 
+                            currentStatus="Active"
+                            userName={mockUser.name}
+                        />
                     </div>
                 </div>
             </div>
