@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { 
-    IconLayoutDashboard, 
-    IconUsers, 
-    IconSettings, 
+import {
+    IconLayoutDashboard,
+    IconUsers,
+    IconSettings,
     IconStars,
     IconRobot,
     IconDeviceTv,
@@ -34,7 +34,7 @@ const menuItems = [
     { icon: IconRobot, label: 'AI Astrologers', path: '/ai-astrologers' },
     { icon: IconDeviceTv, label: 'Live Monitor', path: '/live-monitor' },
     { icon: IconHistory, label: 'Sessions', path: '/sessions' },
-    { icon: IconPhoneCall, label: 'Call History', path: '/reports/call-history' },
+    { icon: IconPhoneCall, label: 'Call History', path: '/call-history' },
     { icon: IconWallet, label: 'Wallets', path: '/wallets' },
     { icon: IconCash, label: 'Payouts', path: '/payouts' },
     { icon: IconChartBar, label: 'Reports', path: '/reports' },
@@ -50,7 +50,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         <>
             {/* Backdrop for mobile */}
             {isOpen && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black/50 z-40 lg:hidden backdrop-blur-sm transition-opacity duration-300"
                     onClick={onClose}
                 />
@@ -83,14 +83,13 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                         <NavLink
                             key={item.path}
                             to={item.path}
-                            end={item.path === '/reports'}
                             onClick={() => {
                                 if (window.innerWidth < 1024) onClose();
                             }}
                             className={({ isActive }) => cn(
                                 "relative flex items-center gap-3 px-6 py-2.5 transition-all duration-200 group",
-                                isActive 
-                                    ? "bg-surface-container-low text-primary font-bold" 
+                                isActive
+                                    ? "bg-surface-container-low text-primary font-bold"
                                     : "text-on-surface-variant hover:bg-surface-container-lowest hover:text-primary"
                             )}
                         >
@@ -112,7 +111,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
                 {/* Bottom Section */}
                 <div className="p-4 mt-auto">
-                    <Button 
+                    <Button
                         variant="primary"
                         icon={IconPlus}
                         className="w-full py-3 bg-[#0A0E27] hover:bg-[#1a1f3d] border-none text-white shadow-lg shadow-black/10"
