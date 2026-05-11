@@ -3,7 +3,18 @@ import {
     IconDownload,
     IconFilter,
     IconPlus,
-    IconWallet
+    IconWallet,
+    IconUser,
+    IconUserPlus,
+    IconLogout,
+    IconClock,
+    IconDatabase,
+    IconSearch,
+    IconAdjustmentsHorizontal,
+    IconTrendingUp,
+    IconTrendingDown,
+    IconChartBar,
+    IconCalendar
 } from '@tabler/icons-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -182,43 +193,129 @@ const Users = () => {
                     <Button variant="outlined" size="md" icon={IconBan} className="text-on-surface-variant">
                         Bulk Action
                     </Button>
-                    <Button variant="primary" size="md" icon={IconPlus}>
-                        New User
+                    <Button variant="primary" size="md" className="bg-[#1A1C3D] border-none hover:bg-[#1A1C3D]/90 transition-all">
+                        Export Data
                     </Button>
                 </div>
             </div>
 
-            {/* Filters Section */}
-            <div className="flex flex-wrap items-center gap-3">
-                <MultiSelectFilter
-                    label="Status"
-                    options={statusOptions}
-                    selectedValues={selectedStatuses}
-                    onChange={setSelectedStatuses}
-                />
-                <DateRangeFilter
-                    startDate={startDate}
-                    endDate={endDate}
-                    onChange={(update) => setDateRange(update)}
-                />
-                <FilterPill
-                    label="Balance"
-                    value="Any"
-                    icon={IconWallet}
-                    onClick={() => { }}
-                />
-                {(selectedStatuses.length > 0 || startDate) && (
-                    <div
-                        onClick={() => {
-                            setSelectedStatuses([]);
-                            setDateRange([null, null]);
-                        }}
-                        className="flex items-center gap-2 text-error font-bold text-sm cursor-pointer hover:opacity-80 transition-all ml-2"
-                    >
-                        <IconFilter size={18} />
-                        <span>Clear Filters</span>
+            {/* Stats Section */}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {[
+                    { label: 'TOTAL USER', value: '12,842', trend: '+12%', icon: IconUser, color: 'text-blue-600', bg: 'bg-blue-50' },
+                    { label: 'TODAY REGISTER USER', value: '158', trend: '+45', icon: IconUserPlus, color: 'text-green-600', bg: 'bg-green-50' },
+                    { label: 'TODAY OLD USER LOGIN', value: '2,410', trend: '-3%', icon: IconLogout, color: 'text-orange-600', bg: 'bg-orange-50', isDown: true },
+                    { label: 'TOTAL SESSION TODAY', value: '4,892', trend: '+18%', icon: IconClock, color: 'text-indigo-600', bg: 'bg-indigo-50' },
+                    { label: 'TOTAL DEPOSIT USER', value: '842', trend: '+7%', icon: IconDatabase, color: 'text-purple-600', bg: 'bg-purple-50' },
+                ].map((stat, i) => (
+                    <div key={i} className="bg-white p-5 rounded-2xl border border-outline-variant flex flex-col gap-4">
+                        <div className="flex items-center justify-between">
+                            <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", stat.bg)}>
+                                <stat.icon size={20} className={stat.color} />
+                            </div>
+                            <div className="flex items-center gap-1 text-xs font-bold">
+                                {stat.isDown ? <IconTrendingDown size={14} className="text-error" /> : <IconTrendingUp size={14} className="text-success" />}
+                                <span className={stat.isDown ? "text-error" : "text-success"}>{stat.trend}</span>
+                            </div>
+                        </div>
+                        <div className="space-y-1">
+                            <p className="text-[10px] font-bold text-on-surface-variant tracking-wider">{stat.label}</p>
+                            <h3 className="text-2xl font-black text-on-surface">{stat.value}</h3>
+                        </div>
                     </div>
-                )}
+                ))}
+            </div>
+
+            {/* Filters Section */}
+            <div className="space-y-4">
+                <div className="flex flex-wrap items-center gap-3">
+                    <MultiSelectFilter
+                        label="Status"
+                        options={statusOptions}
+                        selectedValues={selectedStatuses}
+                        onChange={setSelectedStatuses}
+                    />
+                    <DateRangeFilter
+                        startDate={startDate}
+                        endDate={endDate}
+                        onChange={(update) => setDateRange(update)}
+                    />
+                    <FilterPill
+                        label="Balance"
+                        value="Any"
+                        icon={IconWallet}
+                        onClick={() => { }}
+                    />
+
+                    {(selectedStatuses.length > 0 || startDate) && (
+                        <div
+                            onClick={() => {
+                                setSelectedStatuses([]);
+                                setDateRange([null, null]);
+                            }}
+                            className="flex items-center gap-2 text-error font-bold text-sm cursor-pointer hover:opacity-80 transition-all ml-2"
+                        >
+                            <IconFilter size={18} />
+                            <span>Clear Filters</span>
+                        </div>
+                    )}
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                    <div className="lg:col-span-3 bg-white p-6 rounded-2xl border border-outline-variant">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Search Identity</label>
+                                <div className="relative">
+                                    <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" size={18} />
+                                    <input
+                                        type="text"
+                                        placeholder="Search by name or phone number"
+                                        className="w-full pl-10 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                                    />
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-[10px] font-bold text-on-surface-variant tracking-wider uppercase">Joined Date Window</label>
+                                <div className="flex items-center gap-2">
+                                    <div className="relative flex-1">
+                                        <input
+                                            type="text"
+                                            placeholder="Start Date"
+                                            className="w-full pl-4 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                                        />
+                                        <IconCalendar className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant" size={18} />
+                                    </div>
+                                    <span className="text-on-surface-variant">→</span>
+                                    <div className="relative flex-1">
+                                        <input
+                                            type="text"
+                                            placeholder="End Date"
+                                            className="w-full pl-4 pr-10 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-sm focus:outline-none focus:border-primary transition-colors"
+                                        />
+                                        <IconCalendar className="absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant" size={18} />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-[#1A1C3D] p-6 rounded-2xl flex items-center justify-between relative overflow-hidden group">
+                        <div className="space-y-1 relative z-10">
+                            <p className="text-[10px] font-bold text-blue-200/60 tracking-wider uppercase">Live Observers</p>
+                            <h3 className="text-3xl font-black text-white">1,204</h3>
+                            <div className="flex items-center gap-1.5">
+                                <div className="w-1.5 h-1.5 rounded-full bg-success animate-pulse" />
+                                <p className="text-[10px] font-medium text-blue-200/80">Real-time session count</p>
+                            </div>
+                        </div>
+                        <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center relative z-10">
+                            <IconChartBar size={24} className="text-white" />
+                        </div>
+                        {/* Subtle background decoration */}
+                        <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors" />
+                    </div>
+                </div>
             </div>
 
             {/* Table Section */}
