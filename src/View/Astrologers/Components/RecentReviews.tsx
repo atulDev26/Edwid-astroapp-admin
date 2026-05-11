@@ -1,7 +1,21 @@
 import React from 'react';
 import { IconStar, IconTrendingUp } from '@tabler/icons-react';
 
-export default function RecentReviews() {
+export interface ReviewRecord {
+    user: string;
+    avatar?: string;
+    initials?: string;
+    time: string;
+    rating: number;
+    comment?: string;
+}
+
+interface RecentReviewsProps {
+    overallRating: string;
+    reviews: ReviewRecord[];
+}
+
+export default function RecentReviews({ overallRating, reviews }: RecentReviewsProps) {
     return (
         <div className="bg-white rounded-[2rem] border border-outline-variant shadow-sm p-8 space-y-6">
             <div className="flex items-center justify-between">
@@ -18,43 +32,47 @@ export default function RecentReviews() {
                     </button>
                     <div className="flex items-center gap-1.5 text-lg font-black text-[#0A0E27]">
                         <IconStar size={20} className="text-[#FEAE2C]" fill="currentColor" />
-                        4.9
+                        {overallRating}
                     </div>
                 </div>
             </div>
 
             <div className="space-y-8">
-                <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                            <img src="https://i.pravatar.cc/150?u=meera" alt="Meera" className="w-10 h-10 rounded-full object-cover" />
-                            <div>
-                                <p className="font-bold text-on-surface">Meera Joshi</p>
-                                <p className="text-xs text-on-surface-variant">2 hours ago</p>
+                {reviews.map((review, i) => (
+                    <div key={i} className={`space-y-3 ${i !== 0 ? 'border-t border-outline-variant pt-4' : ''}`}>
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                {review.avatar ? (
+                                    <img src={review.avatar} alt={review.user} className="w-10 h-10 rounded-full object-cover" />
+                                ) : (
+                                    <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-bold text-sm text-on-surface-variant">
+                                        {review.initials || review.user.substring(0, 2).toUpperCase()}
+                                    </div>
+                                )}
+                                <div>
+                                    <p className="font-bold text-on-surface">{review.user}</p>
+                                    <p className="text-xs text-on-surface-variant">{review.time}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-1 text-[#FEAE2C]">
+                                {[...Array(5)].map((_, idx) => (
+                                    <IconStar 
+                                        key={idx} 
+                                        size={16} 
+                                        fill={idx < review.rating ? "currentColor" : "none"} 
+                                        strokeWidth={idx < review.rating ? 0 : 2} 
+                                        className={idx < review.rating ? "" : "text-outline-variant"} 
+                                    />
+                                ))}
                             </div>
                         </div>
-                        <div className="flex items-center gap-1 text-[#FEAE2C]">
-                            {[...Array(5)].map((_, idx) => <IconStar key={idx} size={16} fill="currentColor" />)}
-                        </div>
+                        {review.comment && (
+                            <p className="text-sm text-on-surface-variant font-medium leading-relaxed">
+                                {review.comment}
+                            </p>
+                        )}
                     </div>
-                    <p className="text-sm text-on-surface-variant font-medium leading-relaxed">
-                        Acharya Vedant is incredibly accurate! He precisely pinpointed my career shifts and gave very practical remedies. Truly blessed to have found him.
-                    </p>
-                </div>
-
-                <div className="flex items-center justify-between border-t border-outline-variant pt-4">
-                    <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center font-bold text-sm text-on-surface-variant">SR</div>
-                        <div>
-                            <p className="font-bold text-on-surface">Suresh Raina</p>
-                            <p className="text-xs text-on-surface-variant">Yesterday</p>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-1 text-[#FEAE2C]">
-                        <IconStar size={16} fill="currentColor" />
-                        <IconStar size={16} fill="currentColor" />
-                    </div>
-                </div>
+                ))}
             </div>
         </div>
     );

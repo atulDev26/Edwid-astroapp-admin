@@ -2,7 +2,20 @@ import React from 'react';
 import { IconStar } from '@tabler/icons-react';
 import Button from '../../../Components/Common/Button';
 
-export default function FinancialVaultCard() {
+export interface FinancialData {
+    availableBalance: string;
+    monthlyRevenue: string;
+    lifetimeEarnings: string;
+    totalWithdrawals: string;
+    pendingPayouts: string;
+    lastUpdated: string;
+}
+
+interface FinancialVaultCardProps {
+    data: FinancialData;
+}
+
+export default function FinancialVaultCard({ data }: FinancialVaultCardProps) {
     return (
         <div className="bg-[#0A0E27] rounded-[2rem] p-8 text-white relative overflow-hidden">
             <div className="flex items-center justify-between relative z-10">
@@ -10,7 +23,7 @@ export default function FinancialVaultCard() {
                     <IconStar size={28} className="text-[#FEAE2C]" fill="currentColor" />
                     <h2 className="text-2xl font-black">Financial Vault</h2>
                 </div>
-                <span className="bg-white/10 px-4 py-1.5 rounded-full text-[13px] font-medium text-white/90">Updated: Just now</span>
+                <span className="bg-white/10 px-4 py-1.5 rounded-full text-[13px] font-medium text-white/90">Updated: {data.lastUpdated}</span>
             </div>
 
             <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 relative z-10">
@@ -20,7 +33,7 @@ export default function FinancialVaultCard() {
                         <div className="space-y-1">
                             <div className="flex items-baseline gap-2">
                                 <span className="text-3xl font-black text-white">₹</span>
-                                <span className="text-5xl font-black text-white">42,850.00</span>
+                                <span className="text-5xl font-black text-white">{data.availableBalance}</span>
                             </div>
                         </div>
                     </div>
@@ -34,19 +47,19 @@ export default function FinancialVaultCard() {
                 <div className="md:col-span-8 grid grid-cols-2 gap-x-12 gap-y-10 pl-4">
                     <div className="space-y-3">
                         <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">MONTHLY REV.</p>
-                        <p className="text-3xl font-black text-white">₹ 1.2L</p>
+                        <p className="text-3xl font-black text-white">₹ {data.monthlyRevenue}</p>
                     </div>
                     <div className="space-y-3">
                         <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">LIFETIME EARNINGS</p>
-                        <p className="text-3xl font-black text-white">₹ 14.8L</p>
+                        <p className="text-3xl font-black text-white">₹ {data.lifetimeEarnings}</p>
                     </div>
                     <div className="space-y-3">
                         <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">TOTAL WITHDRAWALS</p>
-                        <p className="text-3xl font-black text-white">₹ 12.4L</p>
+                        <p className="text-3xl font-black text-white">₹ {data.totalWithdrawals}</p>
                     </div>
                     <div className="space-y-3">
                         <p className="text-white/60 text-[11px] font-bold uppercase tracking-[0.1em]">PENDING PAYOUTS</p>
-                        <p className="text-3xl font-black text-white">₹ 18.2K</p>
+                        <p className="text-3xl font-black text-white">₹ {data.pendingPayouts}</p>
                     </div>
                 </div>
             </div>
