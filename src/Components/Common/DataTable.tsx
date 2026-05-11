@@ -26,7 +26,7 @@ const TableWrapper = styled.div`
     letter-spacing: 0.02em;
   }
   .rdt_TableRow {
-    min-height: 80px;
+    min-height: 64px;
     border-bottom: 1px solid #EDEDF2;
     background-color: #FFFFFF;
     &:hover {
@@ -85,13 +85,13 @@ const CustomDataTable = <T,>(props: CustomDataTableProps<T>) => {
   return (
     <TableWrapper>
       <DataTable
-        {...props}
         selectableRows
         selectableRowsHighlight
         pointerOnHover
         highlightOnHover
         responsive
         noHeader
+        {...props}
         customStyles={customStyles}
       />
     </TableWrapper>

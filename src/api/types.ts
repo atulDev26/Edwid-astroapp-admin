@@ -40,3 +40,39 @@ export interface User {
     avatar: string;
 }
 
+// Monitor Types
+export interface Session {
+    id: string;
+    type: 'chat' | 'call';
+    astrologer: {
+        name: string;
+        image: string;
+    };
+    user: {
+        name: string;
+        gender: string;
+        dob: string;
+        location: string;
+    };
+    startTime: string;
+    duration: string;
+    status: string;
+    value: string;
+}
+
+export interface Completion {
+    id: string;
+    participant: {
+        name: string;
+        gender: string;
+        dob: string;
+        location: string;
+    };
+    expert: string;
+    startTime: string;
+    endTime: string;
+    status: string;
+    duration: string;
+    amount: string;
+    rating: number | null;
+}
