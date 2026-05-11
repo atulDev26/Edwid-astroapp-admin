@@ -14,6 +14,7 @@ import Store from './View/Store/Store';
 import Content from './View/Content/Content';
 import Notifications from './View/Notifications/Notifications';
 import Settings from './View/Settings/Settings';
+import Sessions from './View/Sessions/Sessions';
 import Layout from './Layout/Layout';
 
 import Profile from './View/Profile/Profile';
@@ -43,6 +44,7 @@ function App() {
           <Route path="/astrologers/:id" element={<AstrologerDetails />} />
           <Route path="/ai-astrologers" element={<AiAstrologers />} />
           <Route path="/live-monitor" element={<LiveMonitor />} />
+          <Route path="/sessions" element={<Sessions />} />
           <Route path="/wallets" element={<Wallets />} />
           <Route path="/payouts" element={<Payouts />} />
           <Route path="/reports" element={<Reports />} />

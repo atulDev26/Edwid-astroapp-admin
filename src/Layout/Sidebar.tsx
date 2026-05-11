@@ -15,7 +15,8 @@ import {
     IconFileText,
     IconBell,
     IconX,
-    IconPlus
+    IconPlus,
+    IconHistory
 } from '@tabler/icons-react';
 import Button from '../Components/Common/Button';
 import { cn } from '../Utils/cn';
@@ -31,6 +32,7 @@ const menuItems = [
     { icon: IconStars, label: 'Astrologers', path: '/astrologers' },
     { icon: IconRobot, label: 'AI Astrologers', path: '/ai-astrologers' },
     { icon: IconDeviceTv, label: 'Live Monitor', path: '/live-monitor' },
+    { icon: IconHistory, label: 'Sessions', path: '/sessions' },
     { icon: IconWallet, label: 'Wallets', path: '/wallets' },
     { icon: IconCash, label: 'Payouts', path: '/payouts' },
     { icon: IconChartBar, label: 'Reports', path: '/reports' },
