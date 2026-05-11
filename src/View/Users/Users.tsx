@@ -18,6 +18,7 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';
 import Button from '../../Components/Common/Button';
+import Breadcrumb from '../../Components/Common/Breadcrumb';
 import CustomDataTable from '../../Components/Common/DataTable';
 import DateRangeFilter from '../../Components/Common/DateRangeFilter';
 import FilterPill from '../../Components/Common/FilterPill';
@@ -193,6 +194,14 @@ const Users = () => {
 
     return (
         <div className="space-y-6">
+            {/* Breadcrumb */}
+            <Breadcrumb 
+                items={[
+                    { label: 'Dashboard', href: '/dashboard' },
+                    { label: 'User' }
+                ]} 
+            />
+
             {/* Header Section */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex flex-col gap-1">
