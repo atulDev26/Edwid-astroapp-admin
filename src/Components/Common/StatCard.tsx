@@ -51,7 +51,7 @@ const StatCard: React.FC<StatCardProps> = ({
             </div>
 
             <div className="mt-4">
-                <h3 className="text-[28px] font-black tracking-tight leading-none">
+                <h3 className="text-[24px] sm:text-[28px] font-black tracking-tight leading-none">
                     {value}
                 </h3>
 
