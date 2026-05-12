@@ -1,17 +1,21 @@
 import React from 'react';
-import { IconInfoCircle, IconBold, IconItalic, IconList, IconLink } from '@tabler/icons-react';
+import { IconInfoCircle } from '@tabler/icons-react';
 import { type PujaServiceFormData } from '../../types';
 import { cn } from '../../../../Utils/cn';
+import RichTextEditor from '../../../../Components/Common/RichTextEditor';
 
 interface Props {
     formData: PujaServiceFormData;
-    onChange: (field: keyof PujaServiceFormData, value: any) => void;
+    onChange: (field: keyof PujaServiceFormData, value: unknown) => void;
     errors: Record<string, string>;
 }
+
+
 
 const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
     return (
         <div className="bg-white rounded-[24px] border border-[#EDEDF2] p-6 md:p-8 space-y-6 shadow-sm">
+            {/* Section Header */}
             <div className="flex items-center gap-3 border-b border-[#EDEDF2] pb-4">
                 <div className="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center">
                     <IconInfoCircle size={24} />
@@ -20,36 +24,47 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
             </div>
 
             <div className="space-y-6">
+                {/* Service Title */}
                 <div className="space-y-2">
-                    <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Service Title</label>
+                    <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
+                        Service Title
+                    </label>
                     <input
                         type="text"
                         value={formData.title}
                         onChange={(e) => onChange('title', e.target.value)}
                         placeholder="e.g., Shani Jayanti and Shani Amavasya"
                         className={cn(
-                            "w-full h-12 px-4 rounded-xl border bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium",
-                            errors.title ? "border-red-500" : "border-[#EDEDF2]"
+                            'w-full h-12 px-4 rounded-xl border bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium',
+                            errors.title ? 'border-red-500' : 'border-[#EDEDF2]'
                         )}
                     />
-                    {errors.title && <p className="text-xs text-red-500 font-bold ml-1">{errors.title}</p>}
+                    {errors.title && (
+                        <p className="text-xs text-red-500 font-bold ml-1">{errors.title}</p>
+                    )}
                 </div>
 
+                {/* Category + Benefit Tag */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                        <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Category</label>
+                        <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
+                            Category
+                        </label>
                         <select
                             value={formData.category}
                             onChange={(e) => onChange('category', e.target.value)}
                             className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
                         >
                             <option value="Special Occasion">Special Occasion</option>
-                            <option value="Health & Well-being">Health & Well-being</option>
+                            <option value="Health & Well-being">Health &amp; Well-being</option>
                             <option value="Festivals">Festivals</option>
                         </select>
                     </div>
+
                     <div className="space-y-2">
-                        <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Benefit Tag (Badge)</label>
+                        <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
+                            Benefit Tag (Badge)
+                        </label>
                         <input
                             type="text"
                             value={formData.benefitTag}
@@ -60,8 +75,11 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
                     </div>
                 </div>
 
+                {/* Short Description */}
                 <div className="space-y-2">
-                    <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Short Description</label>
+                    <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
+                        Short Description
+                    </label>
                     <textarea
                         rows={3}
                         value={formData.shortDescription}
@@ -71,19 +89,17 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
                     />
                 </div>
 
+                {/* Rich Text Editor — About / Detailed Content */}
                 <div className="space-y-2">
-                    <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Rich Text Content</label>
-                    <div className="rounded-xl border border-[#EDEDF2] overflow-hidden bg-[#F8F9FC]">
-                        <div className="flex items-center gap-1 p-2 bg-white border-b border-[#EDEDF2]">
-                            <button type="button" className="p-2 hover:bg-gray-100 rounded-lg text-[#667085]"><IconBold size={18} /></button>
-                            <button type="button" className="p-2 hover:bg-gray-100 rounded-lg text-[#667085]"><IconItalic size={18} /></button>
-                        </div>
-                        <textarea
-                            rows={6}
+                    <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
+                        About &amp; Significance (Rich Text)
+                    </label>
+                    <div className="quill-wrapper rounded-xl border border-[#EDEDF2] overflow-hidden">
+                        <RichTextEditor
                             value={formData.aboutContent}
-                            onChange={(e) => onChange('aboutContent', e.target.value)}
-                            placeholder="Detailed mythology and significance..."
-                            className="w-full p-4 bg-transparent outline-none text-[15px] font-medium resize-none"
+                            onChange={(html) => onChange('aboutContent', html)}
+                            placeholder="Describe the mythology, significance, and benefits of this Puja..."
+                            minHeight={200}
                         />
                     </div>
                 </div>

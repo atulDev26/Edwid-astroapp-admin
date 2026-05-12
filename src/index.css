@@ -131,3 +131,67 @@ body {
         line-height: 16px;
     }
 }
+
+/* ─── Quill Rich Text Editor Overrides ───────────────────────────────────────
+   These override Quill's default Snow theme to match the project design system.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.quill-wrapper .ql-toolbar.ql-snow {
+    border: none;
+    border-bottom: 1px solid #EDEDF2;
+    background: #ffffff;
+    padding: 8px 12px;
+    font-family: Inter, sans-serif;
+}
+
+.quill-wrapper .ql-container.ql-snow {
+    border: none;
+    font-family: Inter, sans-serif;
+    font-size: 15px;
+    background: #F8F9FC;
+}
+
+.quill-wrapper .ql-editor {
+    min-height: 180px;
+    padding: 16px;
+    color: #0A0E27;
+    line-height: 1.7;
+}
+
+.quill-wrapper .ql-editor.ql-blank::before {
+    color: #9DA4AE;
+    font-style: normal;
+    font-size: 15px;
+}
+
+.quill-wrapper .ql-editor:focus {
+    background: #ffffff;
+}
+
+.quill-wrapper .ql-toolbar .ql-stroke {
+    stroke: #667085;
+}
+
+.quill-wrapper .ql-toolbar .ql-fill {
+    fill: #667085;
+}
+
+.quill-wrapper .ql-toolbar button:hover .ql-stroke,
+.quill-wrapper .ql-toolbar button.ql-active .ql-stroke {
+    stroke: #1A1F4D;
+}
+
+.quill-wrapper .ql-toolbar button:hover .ql-fill,
+.quill-wrapper .ql-toolbar button.ql-active .ql-fill {
+    fill: #1A1F4D;
+}
+
+.quill-wrapper .ql-toolbar .ql-picker-label {
+    color: #667085;
+}
+
+.quill-wrapper .ql-toolbar button:hover,
+.quill-wrapper .ql-toolbar button.ql-active {
+    background: #F8F9FC;
+    border-radius: 6px;
+}
