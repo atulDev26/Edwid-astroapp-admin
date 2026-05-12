@@ -13,7 +13,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
     return (
-        <header className="bg-white border-b border-outline-variant h-16 sticky top-0 z-30">
+        <header className="bg-white border-b border-outline-variant h-16 sticky top-0 z-60">
             <div className="h-full px-4 sm:px-6 flex justify-between items-center">
                 <div className="flex items-center gap-4 flex-1">
                     <Button
