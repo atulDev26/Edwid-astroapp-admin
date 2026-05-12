@@ -45,29 +45,35 @@ const Payouts = () => {
             {/* Stats Section */}
             <PayoutStats />
 
-            {/* Table/Main Section */}
+            {/* Main Content Section */}
             <div className="space-y-6">
-                <PayoutTable />
-
-                {/* Tabs Section */}
-                <div className="bg-white rounded-[28px] border border-[#EDEDF2] shadow-sm overflow-hidden p-2">
-                    <div className="flex flex-wrap items-center gap-2">
-                        {TABS.map((tab, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setActiveTab(i)}
-                                className={cn(
-                                    "px-6 py-3 rounded-[20px] text-[14px] font-bold transition-all whitespace-nowrap",
-                                    activeTab === i
-                                        ? "bg-[#0A0E27]/5 text-[#0A0E27] border-b-2 border-[#0A0E27]"
-                                        : "text-[#667085] hover:bg-gray-50"
-                                )}
-                            >
-                                {tab.label} {tab.count !== undefined && <span className="opacity-60">({tab.count.toLocaleString()})</span>}
-                            </button>
-                        ))}
+                {/* Tabs Navigation */}
+                <div className="bg-white rounded-[10px] border border-[#EDEDF2] shadow-sm overflow-hidden">
+                    <div className="border-b border-[#EDEDF2] overflow-x-auto no-scrollbar">
+                        <div className="flex items-center gap-8 px-6">
+                            {TABS.map((tab, i) => (
+                                <button
+                                    key={i}
+                                    onClick={() => setActiveTab(i)}
+                                    className={cn(
+                                        "relative py-4 text-[14px] font-bold transition-all whitespace-nowrap",
+                                        activeTab === i
+                                            ? "text-[#0A0E27]"
+                                            : "text-[#667085] hover:text-[#0A0E27]"
+                                    )}
+                                >
+                                    {tab.label} {tab.count !== undefined && <span className="opacity-60 ml-1">({tab.count.toLocaleString()})</span>}
+                                    {activeTab === i && (
+                                        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#0A0E27] rounded-full" />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
+
+                {/* Table Section - Reactive to activeTab */}
+                <PayoutTable activeTab={activeTab} />
             </div>
         </div>
     );

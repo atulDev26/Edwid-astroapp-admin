@@ -25,6 +25,11 @@ interface PayoutRequest {
     requestedDate: string;
     requestedTime: string;
     compliance: 'Verified' | 'Review';
+    status?: 'Pending' | 'Processed' | 'Rejected';
+}
+
+interface PayoutTableProps {
+    activeTab: number;
 }
 
 const mockData: PayoutRequest[] = [
@@ -69,7 +74,41 @@ const mockData: PayoutRequest[] = [
     }
 ];
 
-const PayoutTable = () => {
+const processedData: PayoutRequest[] = [
+    {
+        id: '101',
+        astrologer: {
+            name: 'Astro Deepa',
+            id: '#ASTRO-5521',
+            image: 'https://i.pravatar.cc/150?u=deepa'
+        },
+        requestedAmount: '$1,200.00',
+        walletBalance: '$4,500.00',
+        requestedDate: 'Oct 20, 2024',
+        requestedTime: '11:00',
+        compliance: 'Verified',
+        status: 'Processed'
+    }
+];
+
+const rejectedData: PayoutRequest[] = [
+    {
+        id: '201',
+        astrologer: {
+            name: 'Guruji Sandeep',
+            id: '#ASTRO-4412',
+            image: 'https://i.pravatar.cc/150?u=sandeep'
+        },
+        requestedAmount: '$5,000.00',
+        walletBalance: '$5,000.00',
+        requestedDate: 'Oct 19, 2024',
+        requestedTime: '16:45',
+        compliance: 'Review',
+        status: 'Rejected'
+    }
+];
+
+const PayoutTable = ({ activeTab }: PayoutTableProps) => {
     const [actionModal, setActionModal] = React.useState<{
         isOpen: boolean;
         type: 'approve' | 'reject' | null;
@@ -190,12 +229,35 @@ const PayoutTable = () => {
         }
     ];
 
+    const getTableTitle = () => {
+        switch (activeTab) {
+            case 0: return 'Pending Payout Requests';
+            case 1: return 'Processed Payouts';
+            case 2: return 'Rejected / Flagged Payouts';
+            case 3: return 'Auto-Payout Rules';
+            default: return 'Payout Requests';
+        }
+    };
+
+    const getTableData = () => {
+        switch (activeTab) {
+            case 0: return mockData;
+            case 1: return processedData;
+            case 2: return rejectedData;
+            default: return [];
+        }
+    };
+
     return (
-        <div className="bg-white rounded-[28px] border border-[#EDEDF2] shadow-sm overflow-hidden">
+        <div className="bg-white rounded-[10px] border border-[#EDEDF2] shadow-sm overflow-hidden">
             <div className="p-6 border-b border-[#EDEDF2] flex flex-col sm:flex-col md:flex-row items-center justify-between">
                 <div className="flex flex-col">
-                    <h2 className="text-[18px] font-black text-[#0A0E27]">Pending Payout Requests</h2>
-                    <p className="text-[13px] font-medium text-[#667085]">Verification required for withdrawals exceeding $5,000.</p>
+                    <h2 className="text-[18px] font-black text-[#0A0E27]">{getTableTitle()}</h2>
+                    <p className="text-[13px] font-medium text-[#667085]">
+                        {activeTab === 0 
+                            ? 'Verification required for withdrawals exceeding $5,000.' 
+                            : `Viewing ${getTableTitle().toLowerCase()} records.`}
+                    </p>
                 </div>
                 <div className="flex sm:flex-col md:flex-row items-center gap-3">
                     <Button variant="outlined" className="h-10 px-4 text-[13px] font-bold rounded-xl border-[#EDEDF2] text-[#0A0E27]">
@@ -209,13 +271,13 @@ const PayoutTable = () => {
 
             <CustomDataTable
                 columns={columns}
-                data={mockData}
+                data={getTableData()}
                 selectableRows={false}
             />
 
             <div className="p-4 sm:p-6 border-t border-[#EDEDF2] flex flex-col sm:flex-row items-center justify-between gap-4">
                 <span className="text-[11px] sm:text-[12px] font-bold text-[#667085] uppercase tracking-wider text-center sm:text-left">
-                    SHOWING 3 OF 12 PENDING REQUESTS
+                    SHOWING {getTableData().length} OF {activeTab === 0 ? '12' : getTableData().length} {getTableTitle().toUpperCase()}
                 </span>
                 <div className="flex items-center gap-2">
                     <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#EDEDF2] text-[#667085] hover:bg-gray-50">
