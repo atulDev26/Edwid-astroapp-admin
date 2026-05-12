@@ -74,7 +74,7 @@ const Reports = () => {
             </div>
 
             {/* Filters Section */}
-            <div className="relative z-50">
+            <div className="relative z-30">
                 <ReportFilters
                     selectedPeriod={selectedPeriod}
                     setSelectedPeriod={handlePeriodChange}
