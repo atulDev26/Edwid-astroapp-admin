@@ -42,8 +42,14 @@ const CreatePujaService = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<Record<string, string>>({});
 
-    const handleChange = (field: keyof PujaServiceFormData, value: any) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
+    const handleChange = (field: keyof PujaServiceFormData, value: unknown) => {
+        setFormData(prev => {
+            const updated = { ...prev, [field]: value };
+            console.log(`[CreatePujaService] Field changed: "${String(field)}"`, { value, fullForm: updated });
+            return updated;
+        });
+
+        // Clear individual field error on change
         if (errors[field]) {
             setErrors(prev => {
                 const next = { ...prev };
@@ -53,17 +59,24 @@ const CreatePujaService = () => {
         }
     };
 
-    const validateForm = () => {
+    const validateForm = (): boolean => {
         const newErrors: Record<string, string> = {};
-        if (!formData.title.trim()) newErrors.title = 'Service title is required';
-        if (!formData.pujaDate) newErrors.pujaDate = 'Puja date is required';
+        if (!formData.title.trim())     newErrors.title      = 'Service title is required';
+        if (!formData.pujaDate)         newErrors.pujaDate   = 'Puja date is required';
         if (!formData.templeName.trim()) newErrors.templeName = 'Temple name is required';
 
+        const isValid = Object.keys(newErrors).length === 0;
+        console.log('[CreatePujaService] Validation:', { isValid, errors: newErrors, formData });
+
         setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
+        return isValid;
     };
 
     const handlePublish = async () => {
+        console.log('[CreatePujaService] ── Publish clicked ──────────────────');
+        console.table({ title: formData.title, date: formData.pujaDate, temple: formData.templeName });
+        console.log('[CreatePujaService] Full payload:', formData);
+
         if (!validateForm()) {
             toast.error('Please fix the errors in the form');
             return;
@@ -72,11 +85,17 @@ const CreatePujaService = () => {
         setIsLoading(true);
         try {
             const result = await pujaApi.createService(formData);
+            console.log('[CreatePujaService] ✅ Publish result:', result);
+
             if (result.success) {
                 toast.success('Puja Service Published Successfully!');
-                navigate('/puja-booking');
+
+                // ⚠️ Delay navigation so you can see the console logs.
+                // Remove this delay (and just call navigate directly) once confirmed.
+                setTimeout(() => navigate('/puja-booking'), 1500);
             }
         } catch (error) {
+            console.error('[CreatePujaService] ❌ Publish failed:', error);
             toast.error('Failed to publish service');
         } finally {
             setIsLoading(false);
@@ -84,11 +103,15 @@ const CreatePujaService = () => {
     };
 
     const handleSaveDraft = async () => {
+        console.log('[CreatePujaService] Save draft initiated with data:', formData);
+
         setIsLoading(true);
         try {
-            await pujaApi.saveDraft(formData);
+            const result = await pujaApi.saveDraft(formData);
+            console.log('[CreatePujaService] Draft saved:', result);
             toast.info('Draft saved successfully');
         } catch (error) {
+            console.error('[CreatePujaService] Draft save failed:', error);
             toast.error('Failed to save draft');
         } finally {
             setIsLoading(false);
