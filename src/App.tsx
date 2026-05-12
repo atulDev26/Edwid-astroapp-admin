@@ -13,6 +13,7 @@ import Reports from './View/Reports/Reports';
 import CallHistory from './View/Reports/CallHistory';
 import ChatHistory from './View/Reports/ChatHistory';
 import PujaBooking from './View/PujaBooking/PujaBooking';
+import CreatePujaService from './View/PujaBooking/CreatePujaService';
 import Store from './View/Store/Store';
 import Content from './View/Content/Content';
 import Notifications from './View/Notifications/Notifications';
@@ -55,6 +56,7 @@ function App() {
           <Route path="/call-history" element={<CallHistory />} />
           <Route path="/chat-history" element={<ChatHistory />} />
           <Route path="/puja-booking" element={<PujaBooking />} />
+          <Route path="/puja-booking/create" element={<CreatePujaService />} />
           <Route path="/store" element={<Store />} />
           <Route path="/content" element={<Content />} />
           <Route path="/notifications" element={<Notifications />} />

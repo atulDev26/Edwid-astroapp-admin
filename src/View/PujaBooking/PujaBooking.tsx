@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { IconPlus } from '@tabler/icons-react';
 import Breadcrumb from '../../Components/Common/Breadcrumb';
 import Button from '../../Components/Common/Button';
@@ -30,10 +31,12 @@ const PujaBooking = () => {
                             Manage services, view schedules, and handle customer bookings.
                         </p>
                     </div>
-                    <Button variant="primary" className="h-11 px-6 rounded-xl bg-[#0A0E27] text-white font-bold flex items-center gap-2 shadow-lg shadow-black/5">
-                        <IconPlus size={20} />
-                        Add Puja Service
-                    </Button>
+                    <Link to="/puja-booking/create">
+                        <Button variant="primary" className="h-11 px-6 rounded-xl bg-[#0A0E27] text-white font-bold flex items-center gap-2 shadow-lg shadow-black/5">
+                            <IconPlus size={20} />
+                            Add Puja Service
+                        </Button>
+                    </Link>
                 </div>
             </div>
 
