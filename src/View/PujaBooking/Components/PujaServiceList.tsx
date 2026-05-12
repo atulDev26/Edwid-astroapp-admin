@@ -1,15 +1,14 @@
-import React from 'react';
-import { 
-    IconSearch, 
-    IconFilter, 
-    IconMapPin, 
-    IconCalendar, 
+import {
     IconArrowRight,
+    IconCalendar,
     IconEdit,
+    IconFilter,
+    IconMapPin,
+    IconSearch,
     IconTrash
 } from '@tabler/icons-react';
-import Button from '../../../Components/Common/Button';
 import Badge from '../../../Components/Common/Badge';
+import Button from '../../../Components/Common/Button';
 import CustomDataTable from '../../../Components/Common/DataTable';
 import { cn } from '../../../Utils/cn';
 
@@ -97,7 +96,7 @@ const PujaServiceList = () => {
             <div className="space-y-4">
                 <h2 className="text-[20px] font-black text-[#0A0E27] px-2">All Services Catalog</h2>
                 <div className="bg-white rounded-[20px] border border-[#EDEDF2] shadow-sm overflow-hidden">
-                    <CustomDataTable 
+                    <CustomDataTable
                         columns={[
                             { name: 'SERVICE NAME', selector: (row: any) => row.name, cell: (row: any) => <span className="font-bold text-[#0A0E27]">{row.name}</span> },
                             { name: 'CATEGORY', selector: (row: any) => row.category, cell: (row: any) => <span className="text-[#667085]">{row.category}</span> },

@@ -1,13 +1,12 @@
-import React from 'react';
-import { 
-    IconFilter, 
-    IconDownload, 
-    IconCheck, 
-    IconX, 
-    IconDotsVertical 
+import {
+    IconCheck,
+    IconDotsVertical,
+    IconDownload,
+    IconFilter,
+    IconX
 } from '@tabler/icons-react';
-import Button from '../../../Components/Common/Button';
 import Badge from '../../../Components/Common/Badge';
+import Button from '../../../Components/Common/Button';
 import CustomDataTable from '../../../Components/Common/DataTable';
 import { cn } from '../../../Utils/cn';
 
@@ -36,7 +35,7 @@ const PujaBookingManagement = () => {
                         <Button variant="primary" className="h-10 px-4 flex items-center gap-2 bg-[#0A0E27] text-white font-bold rounded-xl flex-1 sm:flex-none"><IconDownload size={18} />Export Report</Button>
                     </div>
                 </div>
-                <CustomDataTable 
+                <CustomDataTable
                     columns={[
                         { name: 'BOOKING ID', selector: (row: any) => row.id, cell: (row: any) => <span className="font-bold text-[#1A1F4D]">{row.id}</span> },
                         { name: 'USER NAME', selector: (row: any) => row.userName, cell: (row: any) => <span className="font-bold text-[#0A0E27]">{row.userName}</span> },
