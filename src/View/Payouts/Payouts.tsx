@@ -56,7 +56,7 @@ const Payouts = () => {
                                     key={i}
                                     onClick={() => setActiveTab(i)}
                                     className={cn(
-                                        "relative py-4 text-[14px] font-bold transition-all whitespace-nowrap",
+                                        "relative py-4 text-[14px] font-bold transition-all whitespace-nowrap cursor-pointer",
                                         activeTab === i
                                             ? "text-[#0A0E27]"
                                             : "text-[#667085] hover:text-[#0A0E27]"
