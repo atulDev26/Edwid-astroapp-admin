@@ -230,9 +230,9 @@ const CallHistory = () => {
     ];
 
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 w-full max-w-full overflow-x-hidden pb-8">
             {/* Breadcrumbs */}
-            <div className="flex items-center gap-2 text-sm font-medium text-on-surface-variant">
+            <div className="flex flex-wrap items-center gap-2 text-sm font-medium text-on-surface-variant">
                 <Link to="/dashboard" className="hover:text-primary transition-colors">Dashboard</Link>
                 <IconChevronRight size={14} className="text-on-surface-variant/50" />
                 <Link to="/reports" className="hover:text-primary transition-colors">Reports</Link>
@@ -241,7 +241,7 @@ const CallHistory = () => {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-black text-[#0A0E27] tracking-tight">Call History</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#0A0E27] tracking-tight">Call History</h1>
 
             {/* Stats Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -250,9 +250,9 @@ const CallHistory = () => {
                         <div className={`w-14 h-14 ${stat.iconBg} rounded-2xl flex items-center justify-center shadow-lg shadow-black/5`}>
                             {stat.icon}
                         </div>
-                        <div className="flex flex-col gap-0.5">
-                            <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">{stat.label}</span>
-                            <span className="text-2xl font-black text-[#0A0E27]">{stat.value}</span>
+                        <div className="flex flex-col gap-0.5 min-w-0">
+                            <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest truncate">{stat.label}</span>
+                            <span className="text-2xl font-black text-[#0A0E27] truncate">{stat.value}</span>
                         </div>
                     </div>
                 ))}
@@ -260,11 +260,10 @@ const CallHistory = () => {
 
             {/* Filters Section */}
             <div className="space-y-4">
-                {/* Date Filter Bar */}
-                <div className="bg-[#F8F9FC] p-4 rounded-[28px] border border-outline-variant/30 shadow-sm overflow-x-auto">
-                    <div className="flex items-end gap-3">
+                <div className="bg-[#F8F9FC] p-4 sm:p-6 rounded-[28px] border border-outline-variant/30 shadow-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-end gap-4">
                         {/* Date From */}
-                        <div className="min-w-[150px] space-y-2">
+                        <div className="w-full sm:min-w-[180px] space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
                                 Date From
                             </label>
@@ -286,7 +285,7 @@ const CallHistory = () => {
                         </div>
 
                         {/* Date To */}
-                        <div className="min-w-[150px] space-y-2">
+                        <div className="w-full sm:min-w-[180px] space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
                                 Date To
                             </label>
@@ -310,10 +309,10 @@ const CallHistory = () => {
                 </div>
 
                 {/* Other Filters Bar */}
-                <div className="bg-[#F8F9FC] p-4 rounded-[28px] border border-outline-variant/30 shadow-sm overflow-x-auto">
-                    <div className="flex items-end gap-3">
+                <div className="bg-[#F8F9FC] p-4 sm:p-6 rounded-[28px] border border-outline-variant/30 shadow-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:items-end gap-4">
                         {/* Search */}
-                        <div className="min-w-[180px] space-y-2">
+                        <div className="w-full lg:min-w-[240px] space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
                                 Search (Name / Mobile)
                             </label>
@@ -333,7 +332,7 @@ const CallHistory = () => {
                         </div>
 
                         {/* Status */}
-                        <div className="min-w-[150px] space-y-2">
+                        <div className="w-full lg:min-w-[180px] space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
                                 Status
                             </label>
@@ -351,7 +350,7 @@ const CallHistory = () => {
                         </div>
 
                         {/* Rating */}
-                        <div className="min-w-[150px] space-y-2">
+                        <div className="w-full lg:min-w-[180px] space-y-2">
                             <label className="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider ml-1">
                                 Rating
                             </label>
@@ -369,7 +368,7 @@ const CallHistory = () => {
                         </div>
 
                         {/* Button */}
-                        <div className="min-w-[170px]">
+                        <div className="w-full lg:min-w-[140px]">
                             <Button
                                 variant="primary"
                                 className="w-full h-11 bg-[#FFB020] text-[#0A0E27] hover:bg-[#ffb020ea] font-bold rounded-xl shadow-sm border-none"
@@ -382,16 +381,13 @@ const CallHistory = () => {
             </div>
 
             {/* Table Section */}
-            <div className="bg-white rounded-[28px] border border-outline-variant/30 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-[28px] border border-outline-variant/30 shadow-sm overflow-hidden w-full">
                 <CustomDataTable
                     columns={columns}
                     data={mockData}
                     selectableRows={false}
                 />
-                <div className="p-6 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <span className="text-sm text-on-surface-variant font-medium">
-                        Showing 1 to 10 of 2,450 results
-                    </span>
+                <div className="border-t border-outline-variant/30">
                     <Pagination
                         currentPage={currentPage}
                         totalPages={245}
