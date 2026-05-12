@@ -27,15 +27,15 @@ const Payouts = () => {
                     </p>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Button 
-                        variant="outlined" 
-                        className="h-11 px-6 rounded-xl border-[#EDEDF2] text-[#0A0E27] font-bold text-[14px]"
+                    <Button
+                        variant="outlined"
+                        className="h-11 px-6 rounded-md border-[#EDEDF2] text-[#0A0E27] font-bold text-[14px]"
                     >
                         Export CSV
                     </Button>
-                    <Button 
-                        variant="primary" 
-                        className="h-11 px-6 rounded-xl bg-[#0A0E27] text-white font-bold text-[14px] shadow-sm"
+                    <Button
+                        variant="primary"
+                        className="h-11 px-6 rounded-md bg-primary text-white font-bold text-[14px] shadow-sm"
                     >
                         Financial Summary
                     </Button>
@@ -48,7 +48,7 @@ const Payouts = () => {
             {/* Table/Main Section */}
             <div className="space-y-6">
                 <PayoutTable />
-                
+
                 {/* Tabs Section */}
                 <div className="bg-white rounded-[28px] border border-[#EDEDF2] shadow-sm overflow-hidden p-2">
                     <div className="flex flex-wrap items-center gap-2">
@@ -58,8 +58,8 @@ const Payouts = () => {
                                 onClick={() => setActiveTab(i)}
                                 className={cn(
                                     "px-6 py-3 rounded-[20px] text-[14px] font-bold transition-all whitespace-nowrap",
-                                    activeTab === i 
-                                        ? "bg-[#0A0E27]/5 text-[#0A0E27] border-b-2 border-[#0A0E27]" 
+                                    activeTab === i
+                                        ? "bg-[#0A0E27]/5 text-[#0A0E27] border-b-2 border-[#0A0E27]"
                                         : "text-[#667085] hover:bg-gray-50"
                                 )}
                             >
