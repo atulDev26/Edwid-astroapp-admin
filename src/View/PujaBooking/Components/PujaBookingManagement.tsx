@@ -50,13 +50,6 @@ const PujaBookingManagement = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="relative rounded-[24px] overflow-hidden min-h-[280px] bg-[#1A1F4D] flex items-center p-8">
-                    <div className="absolute inset-0 opacity-40"><img src="https://images.unsplash.com/photo-1517154421773-0529f29ea451?auto=format&fit=crop&q=80&w=800" alt="Background" className="w-full h-full object-cover" /></div>
-                    <div className="relative z-10 max-w-md space-y-6">
-                        <div className="space-y-3"><h3 className="text-[24px] font-black text-white leading-tight">Optimize Puja Schedules</h3><p className="text-[14px] text-white/80 font-medium">Manage priest availability and temple slots with AI-driven scheduling.</p></div>
-                        <Button className="bg-[#FFB020] text-[#0A0E27] font-black h-12 px-8 rounded-xl shadow-lg">Explore Planner</Button>
-                    </div>
-                </div>
                 <div className="bg-white rounded-[24px] border border-[#EDEDF2] shadow-sm p-8 space-y-8">
                     <h3 className="text-[18px] font-black text-[#1A1F4D]">Popular Services Heatmap</h3>
                     <div className="space-y-6">{heatmapData.map((item, i) => (<div key={i} className="space-y-2"><div className="flex justify-between items-center text-[14px] font-bold"><span className="text-[#0A0E27]">{item.name}</span><span className="text-[#1A1F4D]">{item.percentage}%</span></div><div className="h-2.5 w-full bg-[#F8F9FC] rounded-full overflow-hidden"><div className={cn("h-full rounded-full transition-all duration-1000", item.color)} style={{ width: `${item.percentage}%` }} /></div></div>))}</div>
