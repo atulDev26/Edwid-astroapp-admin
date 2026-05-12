@@ -91,7 +91,6 @@ const ReportFilters: React.FC<ReportFiltersProps> = ({
                         startDate={startDate}
                         endDate={endDate}
                         selectsRange
-                        portalId="root"
                         customInput={
                             <button className="flex items-center gap-2 px-3 py-2 border border-[#D0D5DD] rounded-lg bg-white w-full sm:min-w-[320px] hover:border-[#040052] transition-colors text-left">
                                 <IconCalendar size={18} className="text-[#667085]" />

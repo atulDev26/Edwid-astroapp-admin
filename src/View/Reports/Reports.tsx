@@ -10,11 +10,42 @@ import RevenueChart from './Components/RevenueChart';
 import TopAstrologersTable from './Components/TopAstrologersTable';
 import TopUsersTable from './Components/TopUsersTable';
 
+import { 
+    startOfDay, 
+    endOfDay, 
+    startOfWeek, 
+    endOfWeek, 
+    startOfMonth, 
+    endOfMonth 
+} from 'date-fns';
+
 const Reports = () => {
-    const [selectedPeriod, setSelectedPeriod] = useState('Daily');
+    const [selectedPeriod, setSelectedPeriod] = useState('Monthly');
     const [compareWithPrevious, setCompareWithPrevious] = useState(true);
-    const [startDate, setStartDate] = useState<Date | null>(new Date(new Date().getFullYear(), new Date().getMonth(), 1));
-    const [endDate, setEndDate] = useState<Date | null>(new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0));
+    const [startDate, setStartDate] = useState<Date | null>(startOfMonth(new Date()));
+    const [endDate, setEndDate] = useState<Date | null>(endOfMonth(new Date()));
+
+    const handlePeriodChange = (period: string) => {
+        setSelectedPeriod(period);
+        const now = new Date();
+        
+        switch (period) {
+            case 'Daily':
+                setStartDate(startOfDay(now));
+                setEndDate(endOfDay(now));
+                break;
+            case 'Weekly':
+                setStartDate(startOfWeek(now, { weekStartsOn: 1 })); // Monday
+                setEndDate(endOfWeek(now, { weekStartsOn: 1 }));
+                break;
+            case 'Monthly':
+                setStartDate(startOfMonth(now));
+                setEndDate(endOfMonth(now));
+                break;
+            default:
+                break;
+        }
+    };
 
     const handleDateChange = (dates: [Date | null, Date | null]) => {
         const [start, end] = dates;
@@ -43,18 +74,22 @@ const Reports = () => {
             </div>
 
             {/* Filters Section */}
-            <ReportFilters 
-                selectedPeriod={selectedPeriod}
-                setSelectedPeriod={setSelectedPeriod}
-                compareWithPrevious={compareWithPrevious}
-                setCompareWithPrevious={setCompareWithPrevious}
-                startDate={startDate}
-                endDate={endDate}
-                onDateChange={handleDateChange}
-            />
+            <div className="relative z-50">
+                <ReportFilters 
+                    selectedPeriod={selectedPeriod}
+                    setSelectedPeriod={handlePeriodChange}
+                    compareWithPrevious={compareWithPrevious}
+                    setCompareWithPrevious={setCompareWithPrevious}
+                    startDate={startDate}
+                    endDate={endDate}
+                    onDateChange={handleDateChange}
+                />
+            </div>
 
             {/* Stats Grid */}
-            <ReportStats />
+            <div className="relative z-0">
+                <ReportStats />
+            </div>
 
             {/* Main Chart Section */}
             <RevenueChart />
