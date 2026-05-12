@@ -1,15 +1,15 @@
-import React from 'react';
-import { 
-    IconArrowDownLeft, 
-    IconArrowUpRight, 
-    IconRotate, 
-    IconShoppingBag,
-    IconSearch,
-    IconChevronDown
+import {
+    IconArrowDownLeft,
+    IconArrowUpRight,
+    IconRotate,
+    IconShoppingBag
 } from '@tabler/icons-react';
-import CustomDataTable from '../../../Components/Common/DataTable';
+import React from 'react';
 import Badge from '../../../Components/Common/Badge';
-import Button from '../../../Components/Common/Button';
+import CustomDataTable from '../../../Components/Common/DataTable';
+import MultiSelectFilter from '../../../Components/Common/MultiSelectFilter';
+import SearchInput from '../../../Components/Common/SearchInput';
+import DateRangeFilter from '../../../Components/Common/DateRangeFilter';
 import { cn } from '../../../Utils/cn';
 
 interface Transaction {
@@ -67,21 +67,139 @@ const userTransactions: Transaction[] = [
         status: 'Processing'
     },
     {
-        id: '4',
-        txnId: '#TXN-88918',
+        id: '5',
+        txnId: '#TXN-88917',
         date: 'Oct 24',
-        time: '09:45',
-        user: { name: 'Rahul Jain', initials: 'RJ' },
-        type: 'Store Purchase',
-        amount: '-₹1,500.00',
+        time: '08:00',
+        user: { name: 'Priya Singh', initials: 'PS' },
+        type: 'Deposit',
+        amount: '+₹1,000.00',
+        isCredit: true,
+        closingBalance: '₹1,500.00',
+        status: 'Success'
+    },
+    {
+        id: '6',
+        txnId: '#TXN-88916',
+        date: 'Oct 23',
+        time: '16:30',
+        user: { name: 'Amit Verma', initials: 'AV' },
+        type: 'Session',
+        amount: '-₹200.00',
         isCredit: false,
-        closingBalance: '₹2,100.00',
+        closingBalance: '₹300.00',
+        status: 'Success'
+    },
+    {
+        id: '7',
+        txnId: '#TXN-88915',
+        date: 'Oct 23',
+        time: '14:15',
+        user: { name: 'Sneha Gupta', initials: 'SG' },
+        type: 'Deposit',
+        amount: '+₹750.00',
+        isCredit: true,
+        closingBalance: '₹1,100.00',
+        status: 'Success'
+    },
+    {
+        id: '8',
+        txnId: '#TXN-88914',
+        date: 'Oct 22',
+        time: '18:00',
+        user: { name: 'Rohan Mehra', initials: 'RM' },
+        type: 'Store Purchase',
+        amount: '-₹450.00',
+        isCredit: false,
+        closingBalance: '₹250.00',
+        status: 'Success'
+    },
+    {
+        id: '9',
+        txnId: '#TXN-88913',
+        date: 'Oct 22',
+        time: '12:00',
+        user: { name: 'Kavya Joshi', initials: 'KJ' },
+        type: 'Session',
+        amount: '-₹300.00',
+        isCredit: false,
+        closingBalance: '₹50.00',
+        status: 'Processing'
+    },
+    {
+        id: '10',
+        txnId: '#TXN-88912',
+        date: 'Oct 21',
+        time: '10:00',
+        user: { name: 'Vikram Raj', initials: 'VR' },
+        type: 'Deposit',
+        amount: '+₹2,000.00',
+        isCredit: true,
+        closingBalance: '₹2,300.00',
         status: 'Success'
     }
 ];
 
+const astrologerEarnings: Transaction[] = [
+    {
+        id: '101',
+        txnId: '#TXN-AST-991',
+        date: 'Oct 23',
+        time: '12:00',
+        user: { name: 'Astro Deepa', initials: 'AD' },
+        type: 'Session',
+        amount: '+₹4,200.00',
+        isCredit: true,
+        closingBalance: '₹12,500.00',
+        status: 'Success'
+    }
+];
+
+const refundRequests: Transaction[] = [
+    {
+        id: '201',
+        txnId: '#TXN-REF-441',
+        date: 'Oct 22',
+        time: '10:30',
+        user: { name: 'Rahul Jain', initials: 'RJ' },
+        type: 'Refund',
+        amount: '+₹350.00',
+        isCredit: true,
+        closingBalance: '₹850.00',
+        status: 'Processing'
+    }
+];
+
 const WalletTable = ({ activeTab }: { activeTab: number }) => {
-    
+    const [searchQuery, setSearchQuery] = React.useState('');
+    const [typeFilter, setTypeFilter] = React.useState<string[]>([]);
+    const [startDate, setStartDate] = React.useState<Date | null>(null);
+    const [endDate, setEndDate] = React.useState<Date | null>(null);
+
+    const filteredTransactions = React.useMemo(() => {
+        const baseData = activeTab === 0
+            ? userTransactions
+            : activeTab === 1
+                ? astrologerEarnings
+                : refundRequests;
+
+        return baseData.filter(txn => {
+            const matchesSearch = txn.txnId.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                txn.user.name.toLowerCase().includes(searchQuery.toLowerCase());
+
+            const matchesType = typeFilter.length === 0 || typeFilter.includes(txn.type);
+
+            // Date filtering logic (Mocked since data is string-based, but ready for real dates)
+            let matchesDate = true;
+            if (startDate && endDate) {
+                // In a real app, you'd do: new Date(txn.timestamp) >= startDate && ...
+                matchesDate = true; 
+            }
+
+            return matchesSearch && matchesType && matchesDate;
+        });
+    }, [searchQuery, typeFilter, startDate, endDate, activeTab]);
+
     const columns = [
         {
             name: 'Txn ID',
@@ -172,31 +290,41 @@ const WalletTable = ({ activeTab }: { activeTab: number }) => {
         <div className="bg-white rounded-[20px] border border-[#EDEDF2] shadow-sm overflow-hidden">
             {/* Filters Bar */}
             <div className="p-6 border-b border-[#EDEDF2] flex flex-wrap items-center gap-4">
-                <div className="relative flex-1 min-w-[240px]">
-                    <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-outline" size={18} />
-                    <input 
-                        type="text" 
+                <div className="flex-1 min-w-[240px]">
+                    <SearchInput
                         placeholder="Search Txn ID or User..."
-                        className="w-full h-10 pl-10 pr-4 bg-surface-container-low border border-[#EDEDF2] rounded-xl text-[13px] focus:outline-none focus:ring-1 focus:ring-primary"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
-                <Button variant="outlined" className="h-10 px-4 text-[13px] font-bold rounded-xl border-[#EDEDF2] gap-2">
-                    All Types <IconChevronDown size={16} />
-                </Button>
-                <Button variant="outlined" className="h-10 px-4 text-[13px] font-bold rounded-xl border-[#EDEDF2] gap-2">
-                    Last 7 Days <IconChevronDown size={16} />
-                </Button>
+
+                <MultiSelectFilter
+                    label="Type"
+                    options={['Deposit', 'Session', 'Refund', 'Store Purchase']}
+                    selectedValues={typeFilter}
+                    onChange={setTypeFilter}
+                />
+
+                <DateRangeFilter 
+                    startDate={startDate}
+                    endDate={endDate}
+                    onChange={(dates) => {
+                        const [start, end] = dates;
+                        setStartDate(start);
+                        setEndDate(end);
+                    }}
+                />
             </div>
 
             <CustomDataTable
                 columns={columns}
-                data={userTransactions}
+                data={filteredTransactions}
                 selectableRows={false}
             />
 
             <div className="p-6 border-t border-[#EDEDF2] flex items-center justify-between">
                 <span className="text-[12px] font-bold text-outline uppercase">
-                    Showing 1 to 10 of 1,245 entries
+                    Showing {filteredTransactions.length} entries
                 </span>
                 <div className="flex items-center gap-2">
                     <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#EDEDF2] text-outline hover:bg-gray-50">
