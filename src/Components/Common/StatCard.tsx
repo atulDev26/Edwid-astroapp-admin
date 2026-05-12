@@ -9,7 +9,7 @@ interface StatCardProps {
         value: string;
         isPositive?: boolean;
     };
-    icon: React.ReactNode;
+    icon?: React.ReactNode;
     variant?: 'light' | 'dark';
     className?: string;
 }
@@ -36,15 +36,17 @@ const StatCard: React.FC<StatCardProps> = ({
             )}
         >
             {/* Background Decorative Icon */}
-            <div className={cn(
-                "absolute right-[-10px] top-4 transition-transform group-hover:scale-110 duration-500",
-                isDark ? "text-white/20" : "text-[#0A0E27]/10"
-            )}>
-                {React.cloneElement(icon as React.ReactElement, { 
-                    size: 100, 
-                    stroke: 1 
-                } as any)}
-            </div>
+            {icon && (
+                <div className={cn(
+                    "absolute right-[-10px] top-4 transition-transform group-hover:scale-110 duration-500",
+                    isDark ? "text-white/20" : "text-[#0A0E27]/10"
+                )}>
+                    {React.cloneElement(icon as React.ReactElement, { 
+                        size: 100, 
+                        stroke: 1 
+                    } as any)}
+                </div>
+            )}
 
             <div className="relative z-10 flex flex-col h-full justify-between">
                 <div className="space-y-1">
