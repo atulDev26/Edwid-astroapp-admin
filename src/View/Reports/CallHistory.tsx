@@ -1,15 +1,15 @@
 import {
     IconCalendar,
-    IconChevronRight,
-    IconPhone,
-    IconStopwatch,
-    IconClockHour4,
-    IconUserSearch,
-    IconSearch,
     IconChevronDown,
+    IconChevronRight,
+    IconClockHour4,
+    IconPhone,
+    IconSearch,
     IconStarFilled,
+    IconStopwatch,
+    IconUserSearch,
 } from '@tabler/icons-react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from 'react-router-dom';
@@ -138,8 +138,8 @@ const CallHistory = () => {
                 const parts = row.mobile.split(' ');
                 return (
                     <div className="flex flex-col">
-                        <span className="text-[#464651] font-medium text-[13px] leading-tight">{parts[0]} {parts[1]}</span>
-                        {parts[2] && <span className="text-[#464651] font-medium text-[13px] leading-tight">{parts[2]}</span>}
+                        <span className="text-on-surface-variant font-medium text-[13px] leading-tight">{parts[0]} {parts[1]}</span>
+                        {parts[2] && <span className="text-on-surface-variant font-medium text-[13px] leading-tight">{parts[2]}</span>}
                     </div>
                 );
             }
@@ -153,9 +153,9 @@ const CallHistory = () => {
                     <div className="flex items-center gap-2.5">
                         <img src={row.astrologer.image} alt={row.astrologer.name} className="w-8 h-8 rounded-full object-cover shrink-0" />
                         <div className="flex flex-col">
-                            <span className="text-[#464651] font-medium text-[13px] leading-tight">{nameParts[0]}</span>
+                            <span className="text-on-surface-variant font-medium text-[13px] leading-tight">{nameParts[0]}</span>
                             {nameParts.length > 1 && (
-                                <span className="text-[#464651] font-medium text-[13px] leading-tight">{nameParts.slice(1).join(' ')}</span>
+                                <span className="text-on-surface-variant font-medium text-[13px] leading-tight">{nameParts.slice(1).join(' ')}</span>
                             )}
                         </div>
                     </div>
@@ -165,7 +165,7 @@ const CallHistory = () => {
         {
             name: 'CALL DURATION',
             width: '120px',
-            cell: (row: CallSession) => <span className="text-[#464651] font-medium text-[13px]">{row.duration}</span>
+            cell: (row: CallSession) => <span className="text-on-surface-variant font-medium text-[13px]">{row.duration}</span>
         },
         {
             name: 'DATE & TIME',
@@ -174,9 +174,9 @@ const CallHistory = () => {
                 const parts = row.dateTime.split(' ');
                 return (
                     <div className="flex flex-col gap-0.5">
-                        <span className="text-[#464651] font-medium text-[13px] leading-none">{parts[0]} {parts[1]}</span>
-                        <span className="text-[#464651] font-medium text-[13px] leading-none">{parts[2]}</span>
-                        <span className="text-[11px] text-[#464651]/70 font-medium leading-none mt-0.5">{parts[3]} {parts[4]}</span>
+                        <span className="text-on-surface-variant font-medium text-[13px] leading-none">{parts[0]} {parts[1]}</span>
+                        <span className="text-on-surface-variant font-medium text-[13px] leading-none">{parts[2]}</span>
+                        <span className="text-[11px] text-on-surface-variant/70 font-medium leading-none mt-0.5">{parts[3]} {parts[4]}</span>
                     </div>
                 );
             }
@@ -196,7 +196,7 @@ const CallHistory = () => {
                             <IconStarFilled key={i} size={14} className={i < row.rating! ? 'text-[#FFB800]' : 'text-outline-variant'} />
                         ))
                     ) : (
-                        <span className="text-[#464651]">—</span>
+                        <span className="text-on-surface-variant">—</span>
                     )}
                 </div>
             )
