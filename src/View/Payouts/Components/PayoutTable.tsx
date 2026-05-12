@@ -161,27 +161,30 @@ const PayoutTable = () => {
             right: true,
             cell: (row: PayoutRequest) => (
                 <div className="flex items-center gap-2">
-                    <button
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        icon={IconCheck}
                         onClick={() => triggerAction(row, 'approve')}
-                        className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#E7F9ED] text-[#12B76A] hover:opacity-80 transition-all"
+                        className="w-8 h-8 rounded-lg bg-[#E7F9ED] text-[#12B76A] hover:bg-[#E7F9ED]/80 border-none shadow-none"
                         title="Approve Payout"
-                    >
-                        <IconCheck size={18} />
-                    </button>
-                    <button
+                    />
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        icon={IconX}
                         onClick={() => triggerAction(row, 'reject')}
-                        className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#FFF1F0] text-[#F04438] hover:opacity-80 transition-all"
+                        className="w-8 h-8 rounded-lg bg-[#FFF1F0] text-[#F04438] hover:bg-[#FFF1F0]/80 border-none shadow-none"
                         title="Reject Payout"
-                    >
-                        <IconX size={18} />
-                    </button>
-                    <button
+                    />
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        icon={IconEye}
                         onClick={() => setDetailModal({ isOpen: true, request: row })}
-                        className="w-8 h-8 flex items-center justify-center rounded-lg bg-[#FFF8E7] text-[#FFB800] hover:opacity-80 transition-all"
+                        className="w-8 h-8 rounded-lg bg-[#FFF8E7] text-[#FFB800] hover:bg-[#FFF8E7]/80 border-none shadow-none"
                         title="View Details"
-                    >
-                        <IconEye size={18} />
-                    </button>
+                    />
                 </div>
             ),
         }
