@@ -1,16 +1,18 @@
+import React, { useState } from 'react';
 import {
-    IconCheck,
-    IconDotsVertical,
-    IconDownload,
     IconFilter,
-    IconX
+    IconDownload,
+    IconCheck,
+    IconX,
+    IconDotsVertical
 } from '@tabler/icons-react';
-import Badge from '../../../Components/Common/Badge';
 import Button from '../../../Components/Common/Button';
+import Badge from '../../../Components/Common/Badge';
 import CustomDataTable from '../../../Components/Common/DataTable';
 import { cn } from '../../../Utils/cn';
+import { toast } from 'sonner';
 
-const bookingsData = [
+const initialBookings = [
     { id: '#PUJ-29384', userName: 'Rajesh Kumar Sharma', serviceName: 'Satyanarayan Katha', dateTime: 'Oct 24, 2023 10:30 AM', amount: '₹ 5,100', status: 'Pending' },
     { id: '#PUJ-29385', userName: 'Anjali Deshpande', serviceName: 'Ganesh Chaturthi Puja', dateTime: 'Oct 25, 2023 08:00 AM', amount: '₹ 11,000', status: 'Accepted' },
     { id: '#PUJ-29386', userName: 'Vikram Singh', serviceName: 'Navagraha Shanti', dateTime: 'Oct 25, 2023 02:15 PM', amount: '₹ 2,500', status: 'Pending' },
@@ -25,6 +27,13 @@ const heatmapData = [
 ];
 
 const PujaBookingManagement = () => {
+    const [bookings, setBookings] = useState(initialBookings);
+
+    const handleStatusUpdate = (id: string, newStatus: 'Accepted' | 'Rejected') => {
+        setBookings(prev => prev.map(b => b.id === id ? { ...b, status: newStatus } : b));
+        toast.success(`Booking ${id} ${newStatus.toLowerCase()} successfully`);
+    };
+
     return (
         <div className="space-y-8">
             <div className="bg-white rounded-[20px] border border-[#EDEDF2] shadow-sm overflow-hidden">
@@ -43,17 +52,15 @@ const PujaBookingManagement = () => {
                         { name: 'DATE & TIME', selector: (row: any) => row.dateTime, cell: (row: any) => <div className="flex flex-col"><span className="text-[13px] font-bold text-[#0A0E27]">{row.dateTime.split(' ').slice(0, 3).join(' ')}</span><span className="text-[11px] font-medium text-[#667085]">{row.dateTime.split(' ').slice(3).join(' ')}</span></div> },
                         { name: 'AMOUNT (INR)', selector: (row: any) => row.amount, cell: (row: any) => <span className="font-black text-[#0A0E27]">{row.amount}</span> },
                         { name: 'STATUS', selector: (row: any) => row.status, cell: (row: any) => <Badge variant={row.status === 'Accepted' ? 'success' : row.status === 'Rejected' ? 'error' : 'warning'} className={cn("border-none px-3", row.status === 'Accepted' ? "bg-blue-50 text-blue-600" : row.status === 'Rejected' ? "bg-red-50 text-red-600" : "bg-orange-50 text-orange-600")}><div className="flex items-center gap-1.5"><div className={cn("w-1.5 h-1.5 rounded-full", row.status === 'Accepted' ? "bg-blue-600" : row.status === 'Rejected' ? "bg-red-600" : "bg-orange-600")} />{row.status}</div></Badge> },
-                        { name: 'ACTIONS', cell: (row: any) => <div className="flex items-center gap-2">{row.status === 'Pending' ? <><button className="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center"><IconCheck size={18} /></button><button className="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center"><IconX size={18} /></button></> : <button className="p-2 hover:bg-gray-100 rounded-lg text-[#667085]"><IconDotsVertical size={18} /></button>}</div>, right: true }
+                        { name: 'ACTIONS', cell: (row: any) => <div className="flex items-center gap-2">{row.status === 'Pending' ? <><button onClick={() => handleStatusUpdate(row.id, 'Accepted')} className="w-8 h-8 rounded-lg bg-orange-100 text-orange-600 flex items-center justify-center hover:bg-orange-200"><IconCheck size={18} /></button><button onClick={() => handleStatusUpdate(row.id, 'Rejected')} className="w-8 h-8 rounded-lg bg-red-600 text-white flex items-center justify-center hover:bg-red-700"><IconX size={18} /></button></> : <button className="p-2 hover:bg-gray-100 rounded-lg text-[#667085]"><IconDotsVertical size={18} /></button>}</div>, right: true }
                     ]}
-                    data={bookingsData}
+                    data={bookings}
                 />
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div className="bg-white rounded-[24px] border border-[#EDEDF2] shadow-sm p-8 space-y-8">
-                    <h3 className="text-[18px] font-black text-[#1A1F4D]">Popular Services Heatmap</h3>
-                    <div className="space-y-6">{heatmapData.map((item, i) => (<div key={i} className="space-y-2"><div className="flex justify-between items-center text-[14px] font-bold"><span className="text-[#0A0E27]">{item.name}</span><span className="text-[#1A1F4D]">{item.percentage}%</span></div><div className="h-2.5 w-full bg-[#F8F9FC] rounded-full overflow-hidden"><div className={cn("h-full rounded-full transition-all duration-1000", item.color)} style={{ width: `${item.percentage}%` }} /></div></div>))}</div>
-                </div>
+            <div className="bg-white rounded-[24px] border border-[#EDEDF2] shadow-sm p-8 space-y-8">
+                <h3 className="text-[18px] font-black text-[#1A1F4D]">Popular Services Heatmap</h3>
+                <div className="space-y-6">{heatmapData.map((item, i) => (<div key={i} className="space-y-2"><div className="flex justify-between items-center text-[14px] font-bold"><span className="text-[#0A0E27]">{item.name}</span><span className="text-[#1A1F4D]">{item.percentage}%</span></div><div className="h-2.5 w-full bg-[#F8F9FC] rounded-full overflow-hidden"><div className={cn("h-full rounded-full transition-all duration-1000", item.color)} style={{ width: `${item.percentage}%` }} /></div></div>))}</div>
             </div>
         </div>
     );
