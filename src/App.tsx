@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { Toaster } from 'sonner';
 import Login from './View/Auth/Login';
 import Dashboard from './View/Dashboard/Dashboard';
 import Users from './View/Users/Users';
@@ -33,6 +34,7 @@ const ProtectedRoute = () => {
 function App() {
   return (
     <Router>
+      <Toaster position="top-right" richColors />
       <Routes>
         {/* Public Routes */}
         <Route path="/login" element={<Login />} />
