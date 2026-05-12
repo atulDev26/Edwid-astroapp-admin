@@ -41,9 +41,9 @@ const StatCard: React.FC<StatCardProps> = ({
                     "absolute right-[-10px] top-4 transition-transform group-hover:scale-110 duration-500",
                     isDark ? "text-white/20" : "text-[#0A0E27]/10"
                 )}>
-                    {React.cloneElement(icon as React.ReactElement, { 
-                        size: 100, 
-                        stroke: 1 
+                    {React.cloneElement(icon as React.ReactElement, {
+                        size: 100,
+                        stroke: 1
                     } as any)}
                 </div>
             )}

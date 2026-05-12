@@ -10,13 +10,13 @@ import RevenueChart from './Components/RevenueChart';
 import TopAstrologersTable from './Components/TopAstrologersTable';
 import TopUsersTable from './Components/TopUsersTable';
 
-import { 
-    startOfDay, 
-    endOfDay, 
-    startOfWeek, 
-    endOfWeek, 
-    startOfMonth, 
-    endOfMonth 
+import {
+    startOfDay,
+    endOfDay,
+    startOfWeek,
+    endOfWeek,
+    startOfMonth,
+    endOfMonth
 } from 'date-fns';
 
 const Reports = () => {
@@ -28,7 +28,7 @@ const Reports = () => {
     const handlePeriodChange = (period: string) => {
         setSelectedPeriod(period);
         const now = new Date();
-        
+
         switch (period) {
             case 'Daily':
                 setStartDate(startOfDay(now));
@@ -75,7 +75,7 @@ const Reports = () => {
 
             {/* Filters Section */}
             <div className="relative z-50">
-                <ReportFilters 
+                <ReportFilters
                     selectedPeriod={selectedPeriod}
                     setSelectedPeriod={handlePeriodChange}
                     compareWithPrevious={compareWithPrevious}

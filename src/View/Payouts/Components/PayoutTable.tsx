@@ -165,6 +165,7 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
             cell: (row: PayoutRequest) => (
                 <span className="text-[14px] font-bold text-[#0A0E27]">{row.requestedAmount}</span>
             ),
+            minWidth: '150px'
         },
         {
             name: 'WALLET BALANCE',
@@ -172,6 +173,7 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
             cell: (row: PayoutRequest) => (
                 <span className="text-[14px] font-bold text-[#667085]">{row.walletBalance}</span>
             ),
+            minWidth: '150px'
         },
         {
             name: 'REQUESTED DATE',
@@ -182,6 +184,7 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
                     <span className="text-[11px] font-medium text-[#667085]">{row.requestedTime}</span>
                 </div>
             ),
+            minWidth: '150px'
         },
         {
             name: 'COMPLIANCE',
@@ -194,6 +197,7 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
                     {row.compliance}
                 </Badge>
             ),
+            minWidth: '120px'
         },
         {
             name: 'ACTIONS',
@@ -226,6 +230,7 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
                     />
                 </div>
             ),
+            minWidth: '120px'
         }
     ];
 
@@ -249,8 +254,8 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
     };
 
     return (
-        <div className="bg-white rounded-[10px] border border-[#EDEDF2] shadow-sm overflow-hidden">
-            <div className="p-6 border-b border-[#EDEDF2] flex flex-col sm:flex-col md:flex-row items-center justify-between">
+        <div className="bg-white rounded-[20px] border border-[#EDEDF2] shadow-sm overflow-hidden">
+            <div className="p-6 border-b border-[#EDEDF2] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex flex-col">
                     <h2 className="text-[18px] font-black text-[#0A0E27]">{getTableTitle()}</h2>
                     <p className="text-[13px] font-medium text-[#667085]">
@@ -259,11 +264,11 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
                             : `Viewing ${getTableTitle().toLowerCase()} records.`}
                     </p>
                 </div>
-                <div className="flex sm:flex-col md:flex-row items-center gap-3">
-                    <Button variant="outlined" className="h-10 px-4 text-[13px] font-bold rounded-xl border-[#EDEDF2] text-[#0A0E27]">
+                <div className="flex items-center gap-3 w-full sm:w-auto">
+                    <Button variant="outlined" className="h-10 px-4 text-[13px] font-bold rounded-xl border-[#EDEDF2] text-[#0A0E27] flex-1 sm:flex-none">
                         Filters
                     </Button>
-                    <Button variant="primary" className="h-10 px-4 text-[13px] font-bold rounded-xl bg-[#0A0E27] text-white">
+                    <Button variant="primary" className="h-10 px-4 text-[13px] font-bold rounded-xl bg-[#0A0E27] text-white flex-1 sm:flex-none">
                         Batch Approve
                     </Button>
                 </div>
@@ -275,15 +280,19 @@ const PayoutTable = ({ activeTab }: PayoutTableProps) => {
                 selectableRows={false}
             />
 
-            <div className="p-4 sm:p-6 border-t border-[#EDEDF2] flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-[11px] sm:text-[12px] font-bold text-[#667085] uppercase tracking-wider text-center sm:text-left">
-                    SHOWING {getTableData().length} OF {activeTab === 0 ? '12' : getTableData().length} {getTableTitle().toUpperCase()}
+            <div className="p-6 border-t border-[#EDEDF2] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-[12px] font-bold text-outline uppercase tracking-wider text-center sm:text-left">
+                    Showing {getTableData().length} of {activeTab === 0 ? '12' : getTableData().length} entries
                 </span>
                 <div className="flex items-center gap-2">
-                    <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#EDEDF2] text-[#667085] hover:bg-gray-50">
+                    <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#EDEDF2] text-outline hover:bg-gray-50">
                         {'<'}
                     </button>
-                    <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#EDEDF2] text-[#667085] hover:bg-gray-50">
+                    <div className="flex items-center gap-1">
+                        <button className="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white text-[13px] font-bold">1</button>
+                        <button className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-50 text-outline text-[13px] font-bold">2</button>
+                    </div>
+                    <button className="w-8 h-8 flex items-center justify-center rounded-lg border border-[#EDEDF2] text-outline hover:bg-gray-50">
                         {'>'}
                     </button>
                 </div>
