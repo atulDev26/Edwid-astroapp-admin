@@ -14,7 +14,6 @@ const Dashboard = () => {
 
     return (
         <div className="space-y-6 sm:space-y-8 pb-20">
-            {/* ── Header ─────────────────────────────────────────── */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6">
                 <div className="space-y-1">
                     <h1 className="text-[26px] sm:text-[32px] font-black text-[#0A0E27] tracking-tight">System Overview</h1>
@@ -45,19 +44,14 @@ const Dashboard = () => {
                 </div>
             </div>
 
-            {/* ── Stat Cards ─────────────────────────────────────── */}
             <StatsGrid />
 
-            {/* ── Quick Actions ──────────────────────────────────── */}
             <QuickActions />
 
-            {/* ── Charts ─────────────────────────────────────────── */}
             <ChartsSection />
 
-            {/* ── Live Status Hub ────────────────────────────────── */}
             <LiveStatusHub />
 
-            {/* ── Last 5 Consultations ───────────────────────────── */}
             <ConsultationsTable />
         </div>
     );
