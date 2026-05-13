@@ -121,7 +121,7 @@ const CreatePujaService = () => {
     return (
         <div className="space-y-8 max-w-[1200px] mx-auto pb-20 px-4">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-[24px] border border-[#EDEDF2] shadow-sm sticky top-6 z-40">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-[24px] border border-[#EDEDF2] shadow-sm">
                 <div className="space-y-1">
                     <h1 className="text-[24px] md:text-[32px] font-black text-[#1A1F4D] tracking-tight leading-tight">
                         Create New Puja Service
