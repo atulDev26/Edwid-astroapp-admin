@@ -1,9 +1,10 @@
 import React from 'react';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { type PujaServiceFormData } from '../types';
-import { cn } from '../../../Utils/cn';
+
 import RichTextEditor from '../../../Components/Common/RichTextEditor';
 import SelectDropdown from '../../../Components/Common/SelectDropdown';
+import Input from '../../../Components/Common/Input';
 
 const CATEGORY_OPTIONS = [
     { value: 'Special Occasion', label: 'Special Occasion' },
@@ -36,19 +37,13 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
                     <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
                         Service Title
                     </label>
-                    <input
-                        type="text"
+                    <Input
+                        id="service-title"
                         value={formData.title}
                         onChange={(e) => onChange('title', e.target.value)}
                         placeholder="e.g., Shani Jayanti and Shani Amavasya"
-                        className={cn(
-                            'w-full h-12 px-4 rounded-xl border bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium',
-                            errors.title ? 'border-red-500' : 'border-[#EDEDF2]'
-                        )}
+                        error={errors.title}
                     />
-                    {errors.title && (
-                        <p className="text-xs text-red-500 font-bold ml-1">{errors.title}</p>
-                    )}
                 </div>
 
                 {/* Category + Benefit Tag */}
@@ -70,12 +65,11 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
                             Benefit Tag (Badge)
                         </label>
-                        <input
-                            type="text"
+                        <Input
+                            id="benefit-tag"
                             value={formData.benefitTag}
                             onChange={(e) => onChange('benefitTag', e.target.value)}
                             placeholder="e.g., 13 Year Rare Event"
-                            className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
                         />
                     </div>
                 </div>

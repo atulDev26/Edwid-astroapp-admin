@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconClock, IconMapPin } from '@tabler/icons-react';
 import { type PujaServiceFormData } from '../types';
-import { cn } from '../../../Utils/cn';
+import Input from '../../../Components/Common/Input';
 
 interface Props {
     formData: PujaServiceFormData;
@@ -23,35 +23,30 @@ const ScheduleVenueSection: React.FC<Props> = ({ formData, onChange, errors }) =
                 <div className="space-y-5">
                     <div className="space-y-2">
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Puja Date</label>
-                        <input
+                        <Input
+                            id="puja-date"
                             type="date"
                             value={formData.pujaDate}
                             onChange={(e) => onChange('pujaDate', e.target.value)}
-                            className={cn(
-                                "w-full h-12 px-4 rounded-xl border bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium",
-                                errors.pujaDate ? "border-red-500" : "border-[#EDEDF2]"
-                            )}
+                            error={errors.pujaDate}
                         />
-                        {errors.pujaDate && <p className="text-xs text-red-500 font-bold">{errors.pujaDate}</p>}
                     </div>
                     <div className="space-y-2">
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Tithi Name</label>
-                        <input
-                            type="text"
+                        <Input
+                            id="tithi-name"
                             value={formData.tithiName}
                             onChange={(e) => onChange('tithiName', e.target.value)}
                             placeholder="e.g., Shani Amavasya"
-                            className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
                         />
                     </div>
                     <div className="space-y-2">
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Muhurat</label>
-                        <input
-                            type="text"
+                        <Input
+                            id="muhurat"
                             value={formData.muhurat}
                             onChange={(e) => onChange('muhurat', e.target.value)}
                             placeholder="e.g., 4:30 AM - 6:15 PM"
-                            className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
                         />
                     </div>
                 </div>
@@ -68,36 +63,31 @@ const ScheduleVenueSection: React.FC<Props> = ({ formData, onChange, errors }) =
                 <div className="space-y-5">
                     <div className="space-y-2">
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Temple Name</label>
-                        <input
-                            type="text"
+                        <Input
+                            id="temple-name"
                             value={formData.templeName}
                             onChange={(e) => onChange('templeName', e.target.value)}
                             placeholder="Shri Navgraha Shani Temple"
-                            className={cn(
-                                "w-full h-12 px-4 rounded-xl border bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium",
-                                errors.templeName ? "border-red-500" : "border-[#EDEDF2]"
-                            )}
+                            error={errors.templeName}
                         />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
                             <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">City</label>
-                            <input
-                                type="text"
+                            <Input
+                                id="city"
                                 value={formData.city}
                                 onChange={(e) => onChange('city', e.target.value)}
                                 placeholder="Dabra"
-                                className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
                             />
                         </div>
                         <div className="space-y-2">
                             <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">State</label>
-                            <input
-                                type="text"
+                            <Input
+                                id="state"
                                 value={formData.state}
                                 onChange={(e) => onChange('state', e.target.value)}
                                 placeholder="Madhya Pradesh"
-                                className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
                             />
                         </div>
                     </div>

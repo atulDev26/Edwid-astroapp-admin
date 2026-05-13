@@ -1,6 +1,13 @@
 import React, { useState, useRef } from 'react';
 import { IconPhoto, IconVideo, IconTag, IconPlus, IconX } from '@tabler/icons-react';
 import { type PujaServiceFormData } from '../types';
+import Input from '../../../Components/Common/Input';
+import SelectDropdown from '../../../Components/Common/SelectDropdown';
+
+const DEITY_OPTIONS = [
+    { value: 'Lord Shani', label: 'Lord Shani' },
+    { value: 'Lord Shiva', label: 'Lord Shiva' },
+];
 
 interface Props {
     formData: PujaServiceFormData;
@@ -69,16 +76,13 @@ const MediaMetaSection: React.FC<Props> = ({ formData, onChange }) => {
                     <div className="space-y-6">
                         <div className="space-y-2">
                             <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Video URL</label>
-                            <div className="relative">
-                                <IconVideo className="absolute left-4 top-1/2 -translate-y-1/2 text-[#667085]" size={18} />
-                                <input
-                                    type="text"
-                                    value={formData.videoUrl}
-                                    onChange={(e) => onChange('videoUrl', e.target.value)}
-                                    placeholder="https://youtube.com/watch?v=..."
-                                    className="w-full h-12 pl-12 pr-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[14px] font-medium"
-                                />
-                            </div>
+                            <Input
+                                id="video-url"
+                                value={formData.videoUrl}
+                                onChange={(e) => onChange('videoUrl', e.target.value)}
+                                placeholder="https://youtube.com/watch?v=..."
+                                icon={IconVideo}
+                            />
                         </div>
                     </div>
                 </div>
@@ -95,14 +99,12 @@ const MediaMetaSection: React.FC<Props> = ({ formData, onChange }) => {
                 <div className="space-y-6">
                     <div className="space-y-2">
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Primary Deity</label>
-                        <select
+                        <SelectDropdown
+                            id="primary-deity"
                             value={formData.primaryDeity}
-                            onChange={(e) => onChange('primaryDeity', e.target.value)}
-                            className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
-                        >
-                            <option>Lord Shani</option>
-                            <option>Lord Shiva</option>
-                        </select>
+                            onChange={(val) => onChange('primaryDeity', val)}
+                            options={DEITY_OPTIONS}
+                        />
                     </div>
 
                     <div className="space-y-3">
@@ -119,15 +121,14 @@ const MediaMetaSection: React.FC<Props> = ({ formData, onChange }) => {
                                 ))}
                             </div>
                             <div className="flex gap-2">
-                                <input
-                                    type="text"
+                                <Input
+                                    id="new-benefit-point"
                                     value={newTag}
                                     onChange={(e) => setNewTag(e.target.value)}
                                     onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addBenefitPoint())}
                                     placeholder="Add new benefit point"
-                                    className="flex-1 h-11 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[14px] font-medium"
                                 />
-                                <button type="button" onClick={addBenefitPoint} className="h-11 px-4 bg-[#1A1F4D] text-white rounded-xl text-[13px] font-bold flex items-center gap-1.5 hover:bg-opacity-90">
+                                <button type="button" onClick={addBenefitPoint} className="h-11 px-4 bg-[#1A1F4D] text-white rounded-xl text-[13px] font-bold flex items-center gap-1.5 hover:bg-opacity-90 shrink-0">
                                     <IconPlus size={16} /> Add
                                 </button>
                             </div>
