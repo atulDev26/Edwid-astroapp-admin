@@ -3,6 +3,7 @@ export interface PujaTier {
     name: string;
     price: string;
     features: string[];
+    type: 'Standard' | 'Premium';
     isRecommended?: boolean;
 }
 

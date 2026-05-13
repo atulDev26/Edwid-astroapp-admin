@@ -61,7 +61,7 @@ const CustomModel: React.FC<CustomModelProps> = ({
     <>
       {renderTriggerButton()}
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-50 " onClose={onClose}>
+        <Dialog as="div" className="relative z-100 " onClose={onClose}>
           <TransitionChild
             as={Fragment}
             enter="ease-out duration-300"

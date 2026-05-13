@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { IconSend, IconLoader2 } from '@tabler/icons-react';
 import BasicInfoSection from './Components/BasicInfoSection';
 import ScheduleVenueSection from './Components/ScheduleVenueSection';
-import MediaMetaSection from './Components/MediaMetaSection';
+import MediaManagementSection from './Components/MediaManagementSection';
+import MetaDataSection from './Components/MetaDataSection';
 import PackageFAQSection from './Components/PackageFAQSection';
 import Button from '../../Components/Common/Button';
 import { toast } from 'sonner';
@@ -28,8 +29,8 @@ const initialData: PujaServiceFormData = {
     primaryDeity: 'Lord Shani',
     benefitPoints: ['Negativity Removal', 'Obstacle Protection'],
     tiers: [
-        { id: '1', name: 'Individual Puja', price: '1251', features: ['Sankalp with Name/Gotra', 'Live Video Link'] },
-        { id: '2', name: 'Family + Bhog', price: '3001', features: ['Personalized Sankalp for 4', 'Prasad delivered home'], isRecommended: true }
+        { id: '1', name: 'Individual Puja', price: '1251', type: 'Standard', features: ['Sankalp with Name/Gotra', 'Live Video Link'] },
+        { id: '2', name: 'Family + Bhog', price: '3001', type: 'Premium', features: ['Personalized Sankalp for 4', 'Prasad delivered home'], isRecommended: true }
     ],
     faqs: [
         { id: '1', question: 'Why should I choose Shri Mandir for performing a Puja?', answer: 'Our platform ensures authenticity by partnering with renowned temples...' }
@@ -157,11 +158,12 @@ const CreatePujaService = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-8">
                     <BasicInfoSection formData={formData} onChange={handleChange} errors={errors} />
-                    <MediaMetaSection formData={formData} onChange={handleChange} />
+                    <MediaManagementSection formData={formData} onChange={handleChange} />
                     <PackageFAQSection formData={formData} onChange={handleChange} />
                 </div>
                 <div className="space-y-8">
                     <ScheduleVenueSection formData={formData} onChange={handleChange} errors={errors} />
+                    <MetaDataSection formData={formData} onChange={handleChange} />
                 </div>
             </div>
         </div>
