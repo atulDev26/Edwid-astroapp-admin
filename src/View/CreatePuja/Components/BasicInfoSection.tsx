@@ -3,6 +3,13 @@ import { IconInfoCircle } from '@tabler/icons-react';
 import { type PujaServiceFormData } from '../types';
 import { cn } from '../../../Utils/cn';
 import RichTextEditor from '../../../Components/Common/RichTextEditor';
+import SelectDropdown from '../../../Components/Common/SelectDropdown';
+
+const CATEGORY_OPTIONS = [
+    { value: 'Special Occasion', label: 'Special Occasion' },
+    { value: 'Health & Well-being', label: 'Health & Well-being' },
+    { value: 'Festivals', label: 'Festivals' },
+];
 
 interface Props {
     formData: PujaServiceFormData;
@@ -50,15 +57,13 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
                         <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
                             Category
                         </label>
-                        <select
+                        <SelectDropdown
+                            id="puja-category"
                             value={formData.category}
-                            onChange={(e) => onChange('category', e.target.value)}
-                            className="w-full h-12 px-4 rounded-xl border border-[#EDEDF2] bg-[#F8F9FC] focus:bg-white outline-none transition-all text-[15px] font-medium"
-                        >
-                            <option value="Special Occasion">Special Occasion</option>
-                            <option value="Health & Well-being">Health &amp; Well-being</option>
-                            <option value="Festivals">Festivals</option>
-                        </select>
+                            onChange={(val) => onChange('category', val)}
+                            options={CATEGORY_OPTIONS}
+                            placeholder="Select a category"
+                        />
                     </div>
 
                     <div className="space-y-2">
@@ -92,7 +97,7 @@ const BasicInfoSection: React.FC<Props> = ({ formData, onChange, errors }) => {
                 {/* Rich Text Editor — About / Detailed Content */}
                 <div className="space-y-2">
                     <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">
-                        About &amp; Significance (Rich Text)
+                        About Puja Content
                     </label>
                     <div className="quill-wrapper rounded-xl border border-[#EDEDF2] overflow-hidden">
                         <RichTextEditor
