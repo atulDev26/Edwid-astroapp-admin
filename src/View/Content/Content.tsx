@@ -63,13 +63,13 @@ const Content = () => {
                             key={tab}
                             onClick={() => setActiveTab(tab)}
                             className={cn(
-                                "px-6 py-5 text-[14px] font-bold transition-all relative",
-                                activeTab === tab ? "text-[#1A1F4D]" : "text-[#667085] hover:text-[#1A1F4D]"
+                                "px-6 py-5 text-[14px] font-bold transition-all relative cursor-pointer",
+                                activeTab === tab ? "text-primary" : "text-outline hover:text-primary"
                             )}
                         >
                             {tab}
                             {activeTab === tab && (
-                                <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-[#1A1F4D] rounded-t-full" />
+                                <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary rounded-t-full" />
                             )}
                         </button>
                     ))}
