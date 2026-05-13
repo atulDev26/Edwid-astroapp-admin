@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconPackage, IconQuestionMark, IconPlus, IconTrash, IconCircleCheck } from '@tabler/icons-react';
-import { type PujaServiceFormData } from '../../types';
-import { cn } from '../../../../Utils/cn';
+import { type PujaServiceFormData } from '../types';
+import { cn } from '../../../Utils/cn';
 
 interface Props {
     formData: PujaServiceFormData;

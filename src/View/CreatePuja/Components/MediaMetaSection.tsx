@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
-import { IconPhoto, IconVideo, IconTag, IconPlus, IconX, IconChevronDown } from '@tabler/icons-react';
-import { type PujaServiceFormData } from '../../types';
+import { IconPhoto, IconVideo, IconTag, IconPlus, IconX } from '@tabler/icons-react';
+import { type PujaServiceFormData } from '../types';
 
 interface Props {
     formData: PujaServiceFormData;

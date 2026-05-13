@@ -1,7 +1,7 @@
 import React from 'react';
 import { IconClock, IconMapPin } from '@tabler/icons-react';
-import { type PujaServiceFormData } from '../../types';
-import { cn } from '../../../../Utils/cn';
+import { type PujaServiceFormData } from '../types';
+import { cn } from '../../../Utils/cn';
 
 interface Props {
     formData: PujaServiceFormData;
@@ -17,7 +17,7 @@ const ScheduleVenueSection: React.FC<Props> = ({ formData, onChange, errors }) =
                     <div className="w-10 h-10 rounded-xl bg-yellow-50 text-yellow-600 flex items-center justify-center">
                         <IconClock size={24} />
                     </div>
-                    <h2 className="text-[20px] font-black text-[#0A0E27]">Schedule & Tithi</h2>
+                    <h2 className="text-[20px] font-black text-[#0A0E27]">Schedule &amp; Tithi</h2>
                 </div>
 
                 <div className="space-y-5">

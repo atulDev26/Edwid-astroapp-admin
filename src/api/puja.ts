@@ -1,4 +1,4 @@
-import { type PujaServiceFormData } from '../View/PujaBooking/types';
+import { type PujaServiceFormData } from '../View/CreatePuja/types';
 
 // In a real app, this would use axios or fetch to call the backend
 export const pujaApi = {

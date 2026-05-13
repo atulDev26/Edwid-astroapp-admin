@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { IconSend, IconLoader2 } from '@tabler/icons-react';
-import BasicInfoSection from './Components/CreateService/BasicInfoSection';
-import ScheduleVenueSection from './Components/CreateService/ScheduleVenueSection';
-import MediaMetaSection from './Components/CreateService/MediaMetaSection';
-import PackageFAQSection from './Components/CreateService/PackageFAQSection';
+import BasicInfoSection from './Components/BasicInfoSection';
+import ScheduleVenueSection from './Components/ScheduleVenueSection';
+import MediaMetaSection from './Components/MediaMetaSection';
+import PackageFAQSection from './Components/PackageFAQSection';
 import Button from '../../Components/Common/Button';
 import { toast } from 'sonner';
 import { type PujaServiceFormData } from './types';
@@ -61,8 +61,8 @@ const CreatePujaService = () => {
 
     const validateForm = (): boolean => {
         const newErrors: Record<string, string> = {};
-        if (!formData.title.trim())     newErrors.title      = 'Service title is required';
-        if (!formData.pujaDate)         newErrors.pujaDate   = 'Puja date is required';
+        if (!formData.title.trim()) newErrors.title = 'Service title is required';
+        if (!formData.pujaDate) newErrors.pujaDate = 'Puja date is required';
         if (!formData.templeName.trim()) newErrors.templeName = 'Temple name is required';
 
         const isValid = Object.keys(newErrors).length === 0;
@@ -121,7 +121,7 @@ const CreatePujaService = () => {
     return (
         <div className="space-y-8 max-w-[1200px] mx-auto pb-20 px-4">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-[24px] border border-[#EDEDF2] shadow-sm sticky top-4 z-40">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white p-6 rounded-[24px] border border-[#EDEDF2] shadow-sm sticky top-6 z-40">
                 <div className="space-y-1">
                     <h1 className="text-[24px] md:text-[32px] font-black text-[#1A1F4D] tracking-tight leading-tight">
                         Create New Puja Service

@@ -1,8 +1,8 @@
 import React from 'react';
 import { IconInfoCircle } from '@tabler/icons-react';
-import { type PujaServiceFormData } from '../../types';
-import { cn } from '../../../../Utils/cn';
-import RichTextEditor from '../../../../Components/Common/RichTextEditor';
+import { type PujaServiceFormData } from '../types';
+import { cn } from '../../../Utils/cn';
+import RichTextEditor from '../../../Components/Common/RichTextEditor';
 
 interface Props {
     formData: PujaServiceFormData;

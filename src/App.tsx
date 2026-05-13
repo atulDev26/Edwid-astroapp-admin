@@ -13,7 +13,7 @@ import Reports from './View/Reports/Reports';
 import CallHistory from './View/Reports/CallHistory';
 import ChatHistory from './View/Reports/ChatHistory';
 import PujaBooking from './View/PujaBooking/PujaBooking';
-import CreatePujaService from './View/PujaBooking/CreatePujaService';
+import CreatePujaService from './View/CreatePuja/CreatePujaService';
 import Store from './View/Store/Store';
 import Content from './View/Content/Content';
 import Notifications from './View/Notifications/Notifications';
