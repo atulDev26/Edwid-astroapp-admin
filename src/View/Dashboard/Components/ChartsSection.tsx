@@ -54,43 +54,80 @@ const USER_GROWTH_DATA = [
 ];
 
 const UserGrowthChart: React.FC = () => {
-    const maxVal = Math.max(...USER_GROWTH_DATA.map(d => d.regs));
-    const chartHeight = 220;
+    const series = [
+        {
+            name: 'Active',
+            data: USER_GROWTH_DATA.map(d => d.active)
+        },
+        {
+            name: 'Regs',
+            data: USER_GROWTH_DATA.map(d => d.regs - d.active)
+        }
+    ];
+
+    const options: any = {
+        chart: {
+            type: 'bar',
+            stacked: true,
+            toolbar: { show: false },
+            zoom: { enabled: false },
+            fontFamily: 'inherit'
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 8,
+                borderRadiusApplication: 'end', // Only top of stack
+                columnWidth: '50%',
+            }
+        },
+        colors: ['#1A1F4D', '#E8EBF4'],
+        dataLabels: { enabled: false },
+        xaxis: {
+            categories: USER_GROWTH_DATA.map(d => d.week),
+            axisBorder: { show: false },
+            axisTicks: { show: false },
+            labels: { 
+                style: { 
+                    fontSize: '12px', 
+                    fontWeight: 600, 
+                    colors: '#98A2B3' 
+                } 
+            },
+        },
+        yaxis: { show: false },
+        grid: { show: false },
+        legend: {
+            position: 'top',
+            horizontalAlign: 'right',
+            fontWeight: 700,
+            fontSize: '12px',
+            markers: { width: 10, height: 10, radius: 2 },
+            labels: { colors: '#667085' },
+            itemMargin: { horizontal: 10 }
+        },
+        tooltip: {
+            shared: true,
+            intersect: false,
+            y: {
+                formatter: (val: any, { series, seriesIndex, dataPointIndex }: any) => {
+                    if (seriesIndex === 1) {
+                        // Show Total Regs for the top part
+                        return `${series[0][dataPointIndex] + val} (Total)`;
+                    }
+                    return `${val} (Active)`;
+                }
+            }
+        }
+    };
 
     return (
-        <div className="space-y-4">
-            <div className="flex items-center gap-6 justify-end pr-1">
-                <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-sm bg-[#1A1F4D]" />
-                    <span className="text-[12px] font-bold text-[#667085]">Active</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-sm bg-[#E2E8F0]" />
-                    <span className="text-[12px] font-bold text-[#667085]">Regs</span>
-                </div>
-            </div>
-            <div className="flex items-end justify-between gap-2 sm:gap-3 px-1" style={{ height: chartHeight }}>
-                {USER_GROWTH_DATA.map((d, i) => {
-                    const regsH = Math.round((d.regs / maxVal) * chartHeight);
-                    const activeH = Math.round((d.active / maxVal) * chartHeight);
-                    return (
-                        <div key={i} className="relative flex-1" style={{ height: regsH }}>
-                            <div className="absolute inset-0 bg-[#E8EBF4] rounded-t-md" />
-                            <div
-                                className="absolute bottom-0 left-0 right-0 bg-[#1A1F4D] rounded-t-md"
-                                style={{ height: activeH }}
-                            />
-                        </div>
-                    );
-                })}
-            </div>
-            <div className="flex justify-between gap-2 sm:gap-3 px-1">
-                {USER_GROWTH_DATA.map((d, i) => (
-                    <div key={i} className="flex-1 text-center">
-                        <span className="text-[11px] sm:text-[12px] font-semibold text-[#98A2B3]">{d.week}</span>
-                    </div>
-                ))}
-            </div>
+        <div className="h-[280px]">
+            <Chart
+                options={options}
+                series={series}
+                type="bar"
+                height="100%"
+            />
         </div>
     );
 };
