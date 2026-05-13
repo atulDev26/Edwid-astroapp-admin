@@ -92,7 +92,7 @@ const CreatePujaService = () => {
 
                 // ⚠️ Delay navigation so you can see the console logs.
                 // Remove this delay (and just call navigate directly) once confirmed.
-                setTimeout(() => navigate('/puja-booking'), 1500);
+                // setTimeout(() => navigate('/puja-booking'), 1500);
             }
         } catch (error) {
             console.error('[CreatePujaService] ❌ Publish failed:', error);
