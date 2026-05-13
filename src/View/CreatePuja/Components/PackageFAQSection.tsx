@@ -5,6 +5,7 @@ import { cn } from '../../../Utils/cn';
 import CustomModel from '../../../Components/Common/CustomModel';
 import Input from '../../../Components/Common/Input';
 import SelectDropdown from '../../../Components/Common/SelectDropdown';
+import Button from '../../../Components/Common/Button';
 
 interface Props {
     formData: PujaServiceFormData;
@@ -70,14 +71,15 @@ const PackageFAQSection: React.FC<Props> = ({ formData, onChange }) => {
                         </div>
                         <h2 className="text-[20px] font-black text-[#0A0E27]">Package Configuration</h2>
                     </div>
-                    <button 
+                    <Button 
                         type="button" 
+                        variant="ghost"
                         onClick={() => setIsTierModalOpen(true)}
-                        className="flex items-center gap-2 text-[14px] font-bold text-[#1A1F4D] hover:text-primary transition-colors"
+                        className="text-[#1A1F4D] hover:text-primary font-bold text-sm"
+                        icon={IconPlus}
                     >
-                        <IconPlus size={18} />
                         Add Tier
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -91,13 +93,14 @@ const PackageFAQSection: React.FC<Props> = ({ formData, onChange }) => {
                                     Recommended
                                 </div>
                             )}
-                            <button 
+                            <Button 
                                 type="button"
+                                variant="ghost"
+                                size="icon"
                                 onClick={() => removeTier(tier.id)}
                                 className="absolute top-4 right-4 text-[#667085] hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                            >
-                                <IconTrash size={20} />
-                            </button>
+                                icon={IconTrash}
+                            />
                             <div className="space-y-4">
                                 <span className={cn(
                                     "px-2.5 py-1 text-[10px] font-black tracking-widest uppercase rounded",
@@ -132,9 +135,15 @@ const PackageFAQSection: React.FC<Props> = ({ formData, onChange }) => {
                         </div>
                         <h2 className="text-[20px] font-black text-[#0A0E27]">Frequently Asked Questions</h2>
                     </div>
-                    <button type="button" onClick={addFAQ} className="h-9 px-4 bg-[#F8F9FC] border border-[#EDEDF2] rounded-lg text-[12px] font-bold text-[#0A0E27] hover:bg-gray-50">
+                    <Button 
+                        type="button" 
+                        variant="outlined"
+                        size="sm"
+                        onClick={addFAQ} 
+                        className="bg-[#F8F9FC] border-[#EDEDF2] text-[#0A0E27] hover:bg-gray-50 rounded-lg text-xs font-bold"
+                    >
                         Add FAQ
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="space-y-6">
@@ -158,9 +167,14 @@ const PackageFAQSection: React.FC<Props> = ({ formData, onChange }) => {
                                     className="w-full p-4 rounded-xl border border-[#EDEDF2] bg-white text-[14px] font-medium text-[#667085] resize-none outline-none focus:ring-2 focus:ring-[#1A1F4D]/5"
                                 />
                             </div>
-                            <button type="button" onClick={() => removeFAQ(faq.id)} className="p-2 text-red-500 hover:bg-red-50 rounded-lg shrink-0 h-fit mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <IconTrash size={20} />
-                            </button>
+                            <Button 
+                                type="button" 
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => removeFAQ(faq.id)} 
+                                className="text-red-500 hover:bg-red-50 rounded-lg shrink-0 h-fit mt-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                                icon={IconTrash}
+                            />
                         </div>
                     ))}
                 </div>
@@ -208,13 +222,16 @@ const PackageFAQSection: React.FC<Props> = ({ formData, onChange }) => {
                     <div className="space-y-3">
                         <div className="flex items-center justify-between">
                             <label className="text-[13px] font-bold text-[#667085] uppercase tracking-wider">Features</label>
-                            <button 
+                            <Button 
                                 type="button" 
+                                variant="ghost"
+                                size="sm"
                                 onClick={addFeature}
-                                className="text-xs font-bold text-[#1A1F4D] flex items-center gap-1 hover:underline"
+                                className="text-xs font-bold text-[#1A1F4D] hover:underline p-0 h-auto"
+                                icon={IconPlus}
                             >
-                                <IconPlus size={14} /> Add Feature
-                            </button>
+                                Add Feature
+                            </Button>
                         </div>
                         <div className="space-y-3 max-h-[300px] overflow-y-auto pr-2">
                             {newTier.features.map((feature, idx) => (
@@ -225,13 +242,14 @@ const PackageFAQSection: React.FC<Props> = ({ formData, onChange }) => {
                                         onChange={(e) => updateFeature(idx, e.target.value)}
                                         placeholder="e.g. Sankalp with Name/Gotra"
                                     />
-                                    <button 
+                                    <Button 
                                         type="button" 
+                                        variant="ghost"
+                                        size="icon"
                                         onClick={() => removeFeature(idx)}
-                                        className="p-2 text-red-500 hover:bg-red-50 rounded-lg h-12 flex items-center justify-center shrink-0"
-                                    >
-                                        <IconTrash size={18} />
-                                    </button>
+                                        className="text-red-500 hover:bg-red-50 rounded-lg h-12 w-12 flex items-center justify-center shrink-0"
+                                        icon={IconTrash}
+                                    />
                                 </div>
                             ))}
                         </div>
